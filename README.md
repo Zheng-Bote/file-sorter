@@ -15,6 +15,7 @@
 
 - [FileSorter 📂](#filesorter-)
   - [✨ Key Features](#-key-features)
+- [Documentation \& Screenshots](#documentation--screenshots)
   - [🏗️ Architecture](#️-architecture)
     - [Component Overview](#component-overview)
     - [Class Diagram](#class-diagram)
@@ -50,6 +51,12 @@
 
 ---
 
+# Documentation & Screenshots
+
+![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/01_de.png)
+![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/about_de.png)
+
+---
 ## 🏗️ Architecture
 
 The application follows a clean separation of concerns, splitting the User Interface (UI) from the business logic.
