@@ -13,18 +13,22 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [FileSorter 📂](#filesorter-)
   - [✨ Key Features](#-key-features)
-- [Documentation & Screenshots](#documentation--screenshots)
-  - [🏗️ Architecture](#-architecture)
-    - [Component Overview](#component-overview)
-    - [Class Diagram](#class-diagram)
-    - [Sorting Flow Logic](#sorting-flow-logic)
+- [Documentation \& Screenshots](#documentation--screenshots)
+  - [Usage](#usage)
+  - [⚙️ Configuration](#️-configuration)
+  - [Screenshots](#screenshots)
 - [🚀 Getting Started](#-getting-started)
   - [Windows](#windows)
     - [Setup](#setup)
-  - [Build Instructions](#build-instructions)
-  - [Project Structure](#project-structure)
-- [⚙️ Configuration](#-configuration)
+  - [Build](#build)
+    - [Build Instructions](#build-instructions)
+    - [Project Structure](#project-structure)
+  - [🏗️ Architecture](#️-architecture)
+    - [Component Overview](#component-overview)
+    - [Class Diagram](#class-diagram)
+    - [Sorting Flow Logic](#sorting-flow-logic)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
 - [👤 Author](#-author)
@@ -52,10 +56,88 @@
 
 # Documentation & Screenshots
 
+## Usage
+
+## ⚙️ Configuration
+
+1. Launch the application.
+2. Click "+" to add a new rule.
+3. Folder Name: Enter the target subfolder name (e.g., Images).
+4. Extensions: Comma-separated list (e.g., jpg, png, svg).
+5. Use Date?: Check this box to organize files by year/month/day within the target folder.
+6. Enable "Automatic Monitoring" to let the app work in the background.
+
+To remove a rule, select the row and click "-".
+
+## Screenshots
+
 ![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/01_de.png)
 ![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/about_de.png)
 
 ---
+
+# 🚀 Getting Started
+
+## Windows
+
+### Setup 
+
+There are two options:
+
+1. Unzip
+
+   -> no Administrator rights needed
+- unzip `FileSorter-1.0.0-win64.zip` and execute `FilesSorter.exe`
+
+2. Setup
+
+   -> no Administrator rights needed (optional)
+- execute `FileSorter_x86_amd64_v1.0.0_setup.exe` and follow the instructions.
+- doubleclick `FileSorter.exe` or your Desktop-Shortcut
+
+## Build  
+
+***Prerequisites***
+- C++ Compiler supporting C++23 (GCC 13+, Clang 16+, MSVC 2022 v17.6+)
+- CMake (3.23 or newer)
+- Qt 6 (Core, Gui, Widgets, LinguistTools)
+
+
+### Build Instructions
+
+```Bash
+# 1. Clone the repository
+git clone [https://github.com/Zheng-Bote/file-sorter.git](https://github.com/Zheng-Bote/file-sorter.git)
+cd file-sorter
+
+# 2. Create build directory
+mkdir build && cd build
+
+# 3. Configure with CMake
+cmake -DCMAKE_BUILD_TYPE=Release ..
+
+# 4. Build
+cmake --build . --config Release
+
+# 5. Installer packages
+cpack.exe -C Release
+# in some cases (if Chocolatey is installed on your system) the complete path to your Qt cpack is needed
+& "C:\Qt\Tools\CMake_64\bin\cpack.exe" -C Release
+```
+
+### Project Structure
+
+```Plaintext
+file-sorter/
+├── CMakeLists.txt       # Build configuration
+├── rz_config.hpp.in     # Template for versioning info
+├── resources.qrc        # Resource file (icons, etc.)
+├── include/             # Header files (*.hpp)
+├── src/                 # Source files (*.cpp)
+├── translations/        # Translation files (*.ts)
+└── configure/           # CMake configuration scripts
+```
+
 ## 🏗️ Architecture
 
 The application follows a clean separation of concerns, splitting the User Interface (UI) from the business logic.
@@ -133,76 +215,8 @@ flowchart TD
     M --> N["Log Action"]
 ```
 
-# 🚀 Getting Started
 
-## Windows
-
-### Setup 
-
-There are two options:
-
-1. Unzip
-
-   -> no Administrator rights needed
-- unzip `FileSorter-1.0.0-win64.zip` and execute `FilesSorter.exe`
-
-2. Setup
-
-   -> no Administrator rights needed (optional)
-- execute `FileSorter_x86_amd64_v1.0.0_setup.exe` and follow the instructions.
-- doubleclick `FileSorter.exe` or your Desktop-Shortcut
-  
-
-***Prerequisites***
-- C++ Compiler supporting C++23 (GCC 13+, Clang 16+, MSVC 2022 v17.6+)
-- CMake (3.23 or newer)
-- Qt 6 (Core, Gui, Widgets, LinguistTools)
-
-## Build Instructions
-
-```Bash
-# 1. Clone the repository
-git clone [https://github.com/Zheng-Bote/file-sorter.git](https://github.com/Zheng-Bote/file-sorter.git)
-cd file-sorter
-
-# 2. Create build directory
-mkdir build && cd build
-
-# 3. Configure with CMake
-cmake -DCMAKE_BUILD_TYPE=Release ..
-
-# 4. Build
-cmake --build . --config Release
-
-# 5. Installer packages
-cpack.exe -C Release
-# in some cases (if Chocolatey is installed on your system) the complete path to your Qt cpack is needed
-& "C:\Qt\Tools\CMake_64\bin\cpack.exe" -C Release
-```
-
-## Project Structure
-
-```Plaintext
-file-sorter/
-├── CMakeLists.txt       # Build configuration
-├── rz_config.hpp.in     # Template for versioning info
-├── resources.qrc        # Resource file (icons, etc.)
-├── include/             # Header files (*.hpp)
-├── src/                 # Source files (*.cpp)
-├── translations/        # Translation files (*.ts)
-└── configure/           # CMake configuration scripts
-```
-
-# ⚙️ Configuration
-
-1. Launch the application.
-2. Click "+" to add a new rule.
-3. Folder Name: Enter the target subfolder name (e.g., Images).
-4. Extensions: Comma-separated list (e.g., jpg, png, svg).
-5. Use Date?: Check this box to organize files by year/month/day within the target folder.
-6. Enable "Automatic Monitoring" to let the app work in the background.
-
-To remove a rule, select the row and click "-".
+---
 
 # 🤝 Contributing
 
