@@ -13,9 +13,8 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [FileSorter 📂](#filesorter-)
   - [✨ Key Features](#-key-features)
-  - [🏗️ Architecture](#️-architecture)
+  - [🏗️ Architecture](#-architecture)
     - [Component Overview](#component-overview)
     - [Class Diagram](#class-diagram)
     - [Sorting Flow Logic](#sorting-flow-logic)
@@ -24,7 +23,7 @@
     - [Setup](#setup)
   - [Build Instructions](#build-instructions)
   - [Project Structure](#project-structure)
-- [⚙️ Configuration](#️-configuration)
+- [⚙️ Configuration](#-configuration)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
 - [👤 Author](#-author)
