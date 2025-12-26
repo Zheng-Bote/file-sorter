@@ -5,6 +5,37 @@
 ![Framework](https://img.shields.io/badge/framework-Qt6-41CD52.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
+<p>keep your Downloads folder organized</p>
+
+<hr>
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [FileSorter 📂](#filesorter-)
+  - [✨ Key Features](#-key-features)
+  - [🏗️ Architecture](#️-architecture)
+    - [Component Overview](#component-overview)
+    - [Class Diagram](#class-diagram)
+    - [Sorting Flow Logic](#sorting-flow-logic)
+- [🚀 Getting Started](#-getting-started)
+  - [Windows](#windows)
+    - [Setup](#setup)
+  - [Build Instructions](#build-instructions)
+  - [Project Structure](#project-structure)
+- [⚙️ Configuration](#️-configuration)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [👤 Author](#-author)
+  - [Code Contributors](#code-contributors)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<hr>
+
+
+
 **FileSorter** is a robust, cross-platform desktop application designed to keep your Downloads folder organized. Built with modern **C++23** and **Qt6**, it automatically detects new files and sorts them into subdirectories based on user-defined rules.
 
 ## ✨ Key Features
@@ -97,6 +128,24 @@ flowchart TD
 ```
 
 # 🚀 Getting Started
+
+## Windows
+
+### Setup 
+
+There are two options:
+
+1. Unzip
+
+   -> no Administrator rights needed
+- unzip `FileSorter-1.0.0-win64.zip` and execute `FilesSorter.exe`
+
+2. Setup
+
+   -> no Administrator rights needed (optional)
+- execute `FileSorter_x86_amd64_v1.0.0_setup.exe` and follow the instructions.
+- doubleclick `FileSorter.exe` or your Desktop-Shortcut
+  
 
 ***Prerequisites***
 - C++ Compiler supporting C++23 (GCC 13+, Clang 16+, MSVC 2022 v17.6+)
