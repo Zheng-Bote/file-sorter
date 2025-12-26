@@ -13,11 +13,10 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [FileSorter 📂](#filesorter-)
   - [✨ Key Features](#-key-features)
-- [Documentation \& Screenshots](#documentation--screenshots)
+- [Documentation & Screenshots](#documentation--screenshots)
   - [Usage](#usage)
-  - [⚙️ Configuration](#️-configuration)
+  - [⚙️ Configuration](#-configuration)
   - [Screenshots](#screenshots)
 - [🚀 Getting Started](#-getting-started)
   - [Windows](#windows)
@@ -25,7 +24,7 @@
   - [Build](#build)
     - [Build Instructions](#build-instructions)
     - [Project Structure](#project-structure)
-  - [🏗️ Architecture](#️-architecture)
+  - [🏗️ Architecture](#-architecture)
     - [Component Overview](#component-overview)
     - [Class Diagram](#class-diagram)
     - [Sorting Flow Logic](#sorting-flow-logic)
