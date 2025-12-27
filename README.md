@@ -19,18 +19,19 @@
 - [Description](#description)
   - [✨ Key Features](#-key-features)
   - [Status](#status)
-- [Documentation & Screenshots](#documentation--screenshots)
+- [Documentation \& Screenshots](#documentation--screenshots)
   - [Usage](#usage)
-  - [⚙️ Configuration](#-configuration)
+  - [⚙️ Configuration](#️-configuration)
     - [Command Line Options](#command-line-options)
   - [Screenshots](#screenshots)
+    - [Autostart Win11](#autostart-win11)
 - [🚀 Getting Started](#-getting-started)
   - [Windows](#windows)
     - [Setup](#setup)
   - [Build](#build)
     - [Build Instructions](#build-instructions)
     - [Project Structure](#project-structure)
-  - [🏗️ Architecture](#-architecture)
+  - [🏗️ Architecture](#️-architecture)
     - [Component Overview](#component-overview)
     - [Class Diagram](#class-diagram)
     - [Sorting Flow Logic](#sorting-flow-logic)
@@ -111,6 +112,11 @@ FileSorter.exe --minimized
 
 ![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/01_de.png)
 ![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/about_de.png)
+
+### Autostart Win11
+
+![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/win11_autostart_de.png)
+
 
 ---
 ([back to top](#top))
