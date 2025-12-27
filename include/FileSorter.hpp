@@ -25,6 +25,8 @@ public:
     // Aktiviert/Deaktiviert die automatische Überwachung
     void setMonitoring(bool enable);
 
+    void updateRules(const QList<Category>& categories);
+
 public slots:
     // Slot, der aufgerufen wird, wenn sich im Ordner was tut
     void onDirectoryChanged(const QString &path);

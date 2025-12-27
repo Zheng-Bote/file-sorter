@@ -39,6 +39,12 @@ void FileSorter::setMonitoring(bool enable) {
     }
 }
 
+void FileSorter::updateRules(const QList<Category>& categories) {
+    m_currentCategories = categories;
+    // Optional: Loggen, dass Regeln aktualisiert wurden
+    emit logMessage("Regeln wurden aktualisiert.");
+}
+
 void FileSorter::onDirectoryChanged(const QString &path) {
     Q_UNUSED(path);
     // Timer neu starten (Debounce). Solange Änderungen reinkommen, wird die Sortierung verzögert.

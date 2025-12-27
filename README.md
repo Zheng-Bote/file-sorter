@@ -1,11 +1,14 @@
-# FileSorter 📂
+<div id="top" align="center">
+<h1>FileSorter 📂</h1>
+<p>cross-platform application to keep your Download folder organized</p>
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![Language](https://img.shields.io/badge/language-C%2B%2B23-00599C.svg)
-![Framework](https://img.shields.io/badge/framework-Qt6-41CD52.svg)
+
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-
-<p>keep your Downloads folder organized</p>
+![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey.svg)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/qt-desktop_file_encryption-decryption?logo=GitHub)](https://github.com/Zheng-Bote/file-sorter/releases)
+<br/>
+[Report Issue](https://github.com/Zheng-Bote/file-sorter/issues) · [Request Feature](https://github.com/Zheng-Bote/file-sorter/pulls)
+</div>
 
 <hr>
 
@@ -13,10 +16,13 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Description](#description)
   - [✨ Key Features](#-key-features)
-- [Documentation & Screenshots](#documentation--screenshots)
+  - [Status](#status)
+- [Documentation \& Screenshots](#documentation--screenshots)
   - [Usage](#usage)
-  - [⚙️ Configuration](#-configuration)
+  - [⚙️ Configuration](#️-configuration)
+    - [Command Line Options](#command-line-options)
   - [Screenshots](#screenshots)
 - [🚀 Getting Started](#-getting-started)
   - [Windows](#windows)
@@ -24,7 +30,7 @@
   - [Build](#build)
     - [Build Instructions](#build-instructions)
     - [Project Structure](#project-structure)
-  - [🏗️ Architecture](#-architecture)
+  - [🏗️ Architecture](#️-architecture)
     - [Component Overview](#component-overview)
     - [Class Diagram](#class-diagram)
     - [Sorting Flow Logic](#sorting-flow-logic)
@@ -37,9 +43,14 @@
 
 <hr>
 
+# Description
 
+![Language](https://img.shields.io/badge/language-C%2B%2B23-00599C.svg)
+![Framework](https://img.shields.io/badge/framework-Qt6-41CD52.svg)
+![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-**FileSorter** is a robust, cross-platform desktop application designed to keep your Downloads folder organized. Built with modern **C++23** and **Qt6**, it automatically detects new files and sorts them into subdirectories based on user-defined rules.
+**FileSorter** is a robust, cross-platform desktop application designed to keep your Download folder organized. Built with modern **C++23** and **Qt6**, it automatically detects new files and sorts them into subdirectories based on user-defined rules.
 
 ## ✨ Key Features
 
@@ -47,9 +58,22 @@
 * **Smart Debouncing:** Waits for downloads to finish (via `QTimer`) before moving files to avoid corruption.
 * **Flexible Rules:** Map specific file extensions (e.g., `pdf, docx`) to custom folders.
 * **Date-based Sorting:** Optional setting per rule to organize files into `YYYY/MM/DD` substructures.
+* **Hot-Reloading Rules:** Changes to the configuration are applied immediately, even while monitoring is active.
+* **Background Mode:** Start the application minimized via CLI (ideal for system autostart).
 * **Cross-Platform:** Runs seamlessly on Windows, macOS, and Linux.
 * **Internationalization (i18n):** Automatically switches between **English** and **German** based on system settings.
 * **Persistent Configuration:** Rules are saved automatically using `QSettings` (Registry/Ini/Plist).
+
+## Status
+
+![GitHub Created At](https://img.shields.io/github/created-at/Zheng-Bote/file-sorter)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/file-sorter?logo=GitHub)](https://github.com/Zheng-Bote/file-sorter/releases)
+![GitHub Release Date](https://img.shields.io/github/release-date/Zheng-Bote/file-sorter)
+![Status](https://img.shields.io/badge/Status-stable-green)
+
+![GitHub Issues](https://img.shields.io/github/issues/Zheng-Bote/file-sorter)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Zheng-Bote/file-sorter)
+
 
 ---
 
@@ -68,12 +92,28 @@
 
 To remove a rule, select the row and click "-".
 
+> \[!NOTE]
+> You can modify rules while "Automatic Monitoring" is active. The changes will be applied immediately.
+
+### Command Line Options
+You can start the application via the command line (or a shortcut) to launch it directly in the background with monitoring enabled.
+
+| Option | Description |
+| :--- | :--- |
+| `-m`, `--minimized` | Starts the application minimized in the taskbar and automatically enables the folder monitoring. |
+
+**Example:**
+```bash
+FileSorter.exe --minimized
+```
+
 ## Screenshots
 
 ![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/01_de.png)
 ![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/about_de.png)
 
 ---
+([back to top](#top))
 
 # 🚀 Getting Started
 
@@ -129,7 +169,6 @@ cpack.exe -C Release
 ```Plaintext
 file-sorter/
 ├── CMakeLists.txt       # Build configuration
-├── rz_config.hpp.in     # Template for versioning info
 ├── resources.qrc        # Resource file (icons, etc.)
 ├── include/             # Header files (*.hpp)
 ├── src/                 # Source files (*.cpp)
@@ -143,7 +182,7 @@ The application follows a clean separation of concerns, splitting the User Inter
 
 ### Component Overview
 
-1.  **MainWindow (UI):** Handles user interaction, configuration (TableWidget), and displays logs. It manages the application lifecycle.
+1.  **MainWindow (UI):** Handles user interaction, configuration (TableWidget), and displays logs. It manages the application lifecycle and processes optional CLI arguments (QCommandLineParser) to handle minimized starts.
 2.  **FileSorter (Logic):** A `QObject` based worker class. It handles:
     * File system monitoring (`QFileSystemWatcher`).
     * Debouncing logic to wait for file write operations.
@@ -164,11 +203,13 @@ classDiagram
         -setupUI()
         -saveSettings()
         -loadSettings()
+        -onRulesModified()
     }
 
     class FileSorter {
         +void sortDownloads(List categories)
         +void setMonitoring(bool enable)
+        +void updateRules(List categories)
         -QFileSystemWatcher* m_watcher
         -QTimer* m_debounceTimer
         -onDirectoryChanged()
@@ -213,9 +254,8 @@ flowchart TD
     L --> M
     M --> N["Log Action"]
 ```
-
-
 ---
+([back to top](#top))
 
 # 🤝 Contributing
 
@@ -231,6 +271,8 @@ Contributions are welcome! Please fork the repository and create a pull request.
 
 Distributed under the MIT License. See LICENSE for more information.
 
+Copyright (c) 2025 ZHENG Robert
+
 # 👤 Author
 
 [![Zheng Robert - Core Development](https://img.shields.io/badge/Github-Zheng_Robert-black?logo=github)](https://www.github.com/Zheng-Bote)
@@ -239,10 +281,9 @@ Distributed under the MIT License. See LICENSE for more information.
 
 ![Contributors](https://img.shields.io/github/contributors/Zheng-Bote/qt-desktop_file_encryption-decryption?color=dark-green)
 
-[![Zheng Robert](https://img.shields.io/badge/Github-Zheng_Robert-black?logo=github)](https://www.github.com/Zheng-Bote)
 
-([back to top](#top))
 
 <hr>
+([back to top](#top))
 
 :vulcan_salute:

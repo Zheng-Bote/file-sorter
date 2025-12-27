@@ -11,18 +11,31 @@
 #include "AboutDialog.hpp"
 #include "rz_config.hpp"
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent, bool startMinimized)
     : QMainWindow(parent), m_sorter(new FileSorter(this)) {
     
     setupUi();
     setupStatusBar();
     loadSettings(); // Lädt auch den Status der Checkbox
 
+    // CLI logic
+    if (startMinimized) {
+        // Erzwinge Aktivierung der Checkbox -> löst onAutoSortToggled aus
+        // -> startet Überwachung mit aktuellen Regeln
+        if (!m_autoSortCheck->isChecked()) {
+            m_autoSortCheck->setChecked(true);
+            m_logOutput->append(tr("Gestartet im minimierten Modus (Überwachung erzwungen)."));
+        }
+    }
+
     connect(m_sorter, &FileSorter::logMessage, this, [this](const QString &msg){
         m_logOutput->append(msg);
         // Optional: Nachricht auch kurz in der Statusleiste anzeigen (für 3 Sekunden)
         statusBar()->showMessage(msg, 3000);
     });
+
+    // Wenn der User in der Tabelle tippt oder Checkboxen ändert:
+    connect(m_table, &QTableWidget::itemChanged, this, &MainWindow::onRulesModified);
 }
 
 MainWindow::~MainWindow() {
@@ -85,16 +98,39 @@ void MainWindow::onAddCategory() {
     checkItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
     checkItem->setCheckState(Qt::Unchecked); // Standardmäßig aus
     m_table->setItem(row, 2, checkItem);
+
+    onRulesModified();
 }
 
 void MainWindow::onRemoveCategory() {
     int row = m_table->currentRow();
-    if (row >= 0) m_table->removeRow(row);
+    if (row >= 0) {
+        m_table->removeRow(row);
+        // NEU: Nach Löschen sofort Update triggern
+        onRulesModified();
+    }
 }
 
 void MainWindow::onStartSort() {
     // Manuelles Sortieren updated auch die Regeln im Sorter
     m_sorter->sortDownloads(getCategoriesFromUi());
+}
+
+void MainWindow::onRulesModified() {
+    // 1. Einstellungen speichern (optional, aber praktisch)
+    // saveSettings();
+
+    // 2. Wenn Überwachung aktiv ist, müssen wir dem Sorter die neuen Regeln geben
+    if (m_autoSortCheck->isChecked()) {
+        // Wir holen die frischen Daten aus der UI
+        auto newCategories = getCategoriesFromUi();
+
+        // Update im Sorter
+        m_sorter->updateRules(newCategories);
+
+        // Optional: Kurzes Feedback im Log
+        // m_logOutput->append(tr("Konfiguration geändert: Regeln aktualisiert."));
+    }
 }
 
 void MainWindow::onAutoSortToggled(bool checked) {

@@ -19,9 +19,9 @@ static const std::string PROJECT_DESCRIPTION = "Sorts your downloads automatical
 
 static const std::string PROJECT_EXECUTABLE = "FileSorter";
 
-static const std::string PROJECT_VERSION = "1.0.0";
+static const std::string PROJECT_VERSION = "1.1.0";
 static const std::int32_t PROJECT_VERSION_MAJOR{1};
-static const std::int32_t PROJECT_VERSION_MINOR{0};
+static const std::int32_t PROJECT_VERSION_MINOR{1};
 static const std::int32_t PROJECT_VERSION_PATCH{0};
 
 static const std::string PROJECT_HOMEPAGE_URL = "https://github.com/Zheng-Bote/file-sorter";

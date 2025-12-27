@@ -3,6 +3,7 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QLibraryInfo>
+#include <QCommandLineParser>
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
@@ -29,8 +30,30 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    MainWindow w;
-    w.show();
+    // --- NEU: Command Line Parsing ---
+    QCommandLineParser parser;
+    parser.setApplicationDescription("FileSorter - Automatische Dateisortierung");
+    parser.addHelpOption();
+    parser.addVersionOption();
 
+    // Definition der Option -m / --minimized
+    QCommandLineOption minimizedOption(QStringList() << "m" << "minimized",
+                                       QCoreApplication::translate("main", "Startet minimiert und aktiviert die Überwachung."));
+    parser.addOption(minimizedOption);
+
+    parser.process(a);
+
+    // Prüfen, ob das Argument gesetzt wurde
+    bool startMinimized = parser.isSet(minimizedOption);
+    // ---------------------------------
+
+    // MainWindow erstellen und Argument übergeben
+    MainWindow w(nullptr, startMinimized); // <--- Konstruktor angepasst
+
+    if (startMinimized) {
+        w.showMinimized();
+    } else {
+        w.show();
+    }
     return a.exec();
 }

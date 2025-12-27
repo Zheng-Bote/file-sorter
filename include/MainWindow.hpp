@@ -12,7 +12,7 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr, bool startMinimized = false);
     ~MainWindow();
 
 protected:
@@ -27,11 +27,14 @@ private slots:
     void saveSettings();
     void loadSettings();
     void showAboutDialog();
+    void onRulesModified();
 
 private:
     void setupUi();
     void setupStatusBar();
     QList<Category> getCategoriesFromUi() const;
+    // Hilfsfunktion, um Logik nicht zu duplizieren
+    void updateSorterInstance();
 
     QTableWidget *m_table;
     QTextEdit *m_logOutput;
