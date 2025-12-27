@@ -5,7 +5,7 @@
 
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey.svg)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/qt-desktop_file_encryption-decryption?logo=GitHub)](https://github.com/Zheng-Bote/file-sorter/releases)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/file-sorter?logo=GitHub)](https://github.com/Zheng-Bote/file-sorter/releases)
 <br/>
 [Report Issue](https://github.com/Zheng-Bote/file-sorter/issues) · [Request Feature](https://github.com/Zheng-Bote/file-sorter/pulls)
 </div>
