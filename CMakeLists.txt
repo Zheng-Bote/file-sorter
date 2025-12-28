@@ -115,7 +115,7 @@ endif()
 # ==============================================================================
 set(CPACK_PACKAGE_VENDOR "${PROG_ORGANIZATION_NAME}")
 set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
-set(CPACK_PACKAGE_CONTACT "info@hase-zheng.net")
+set(CPACK_PACKAGE_CONTACT "robert@hase-zheng.net")
 set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Portable FileSorter Application")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
@@ -125,3 +125,35 @@ set(CPACK_GENERATOR "ZIP")
 
 # Module laden
 include(CPack)
+
+# ==============================================================================
+# LINUX SPECIFIC (AppImage Vorbereitung)
+# ==============================================================================
+if(UNIX AND NOT APPLE)
+    # 1. Das Programm installieren (nach /usr/bin im AppImage)
+    install(TARGETS ${PROJECT_NAME}
+        RUNTIME DESTINATION bin
+    )
+
+    # 2. Desktop-Datei installieren (nach /usr/share/applications)
+    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/FileSorter.desktop")
+        install(FILES resources/FileSorter.desktop DESTINATION share/applications)
+    endif()
+
+    # 3. Icon installieren (nach /usr/share/icons/hicolor/256x256/apps)
+    # Damit linuxdeploy es automatisch findet und einbettet
+    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_icon.png")
+        install(FILES resources/app_icon.png 
+                DESTINATION share/icons/hicolor/256x256/apps 
+                RENAME app_icon.png)
+    endif()
+
+    # 4. Custom Target "appimage" hinzufügen
+    # Damit kannst du "cmake --build . --target appimage" aufrufen
+    add_custom_target(appimage
+        COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/create_appimage.sh
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Erstelle Linux AppImage..."
+        USES_TERMINAL
+    )
+endif()
