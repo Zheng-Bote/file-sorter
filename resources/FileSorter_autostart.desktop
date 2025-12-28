@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=FileSorter
+Comment=Sorts your Download-Folder automatically
+Exec=/usr/local/bin/FileSorter-x86_64.AppImage -m
+Icon=FileSorter
+Categories=Utility;Filesystem;
+Terminal=false
+StartupNotify=false

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=FileSorter
+Comment=Sorts your Download-Folder automatically
+Exec=FileSorter
+Icon=app_icon
+Categories=Utility;Filesystem;
+Terminal=false

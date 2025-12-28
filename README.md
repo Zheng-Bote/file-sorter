@@ -2,36 +2,38 @@
 <h1>FileSorter 📂</h1>
 <p>cross-platform application to keep your Download folder organized</p>
 
-
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey.svg)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/file-sorter?logo=GitHub)](https://github.com/Zheng-Bote/file-sorter/releases)
 <br/>
 [Report Issue](https://github.com/Zheng-Bote/file-sorter/issues) · [Request Feature](https://github.com/Zheng-Bote/file-sorter/pulls)
+
 </div>
 
 <hr>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [Description](#description)
   - [✨ Key Features](#-key-features)
   - [Status](#status)
-- [Documentation & Screenshots](#documentation--screenshots)
+- [Documentation \& Screenshots](#documentation--screenshots)
   - [Usage](#usage)
-  - [⚙️ Configuration](#-configuration)
+  - [⚙️ Configuration](#️-configuration)
     - [Command Line Options](#command-line-options)
   - [Screenshots](#screenshots)
     - [Autostart Win11](#autostart-win11)
 - [🚀 Getting Started](#-getting-started)
   - [Windows](#windows)
     - [Setup](#setup)
+  - [Linux](#linux)
   - [Build](#build)
     - [Build Instructions](#build-instructions)
     - [Project Structure](#project-structure)
-  - [🏗️ Architecture](#-architecture)
+  - [🏗️ Architecture](#️-architecture)
     - [Component Overview](#component-overview)
     - [Class Diagram](#class-diagram)
     - [Sorting Flow Logic](#sorting-flow-logic)
@@ -55,15 +57,15 @@
 
 ## ✨ Key Features
 
-* **Real-time Monitoring:** Uses `QFileSystemWatcher` to detect new files immediately.
-* **Smart Debouncing:** Waits for downloads to finish (via `QTimer`) before moving files to avoid corruption.
-* **Flexible Rules:** Map specific file extensions (e.g., `pdf, docx`) to custom folders.
-* **Date-based Sorting:** Optional setting per rule to organize files into `YYYY/MM/DD` substructures.
-* **Hot-Reloading Rules:** Changes to the configuration are applied immediately, even while monitoring is active.
-* **Background Mode:** Start the application minimized via CLI (ideal for system autostart).
-* **Cross-Platform:** Runs seamlessly on Windows, macOS, and Linux.
-* **Internationalization (i18n):** Automatically switches between **English** and **German** based on system settings.
-* **Persistent Configuration:** Rules are saved automatically using `QSettings` (Registry/Ini/Plist).
+- **Real-time Monitoring:** Uses `QFileSystemWatcher` to detect new files immediately.
+- **Smart Debouncing:** Waits for downloads to finish (via `QTimer`) before moving files to avoid corruption.
+- **Flexible Rules:** Map specific file extensions (e.g., `pdf, docx`) to custom folders.
+- **Date-based Sorting:** Optional setting per rule to organize files into `YYYY/MM/DD` substructures.
+- **Hot-Reloading Rules:** Changes to the configuration are applied immediately, even while monitoring is active.
+- **Background Mode:** Start the application minimized via CLI (ideal for system autostart).
+- **Cross-Platform:** Runs seamlessly on Windows, macOS, and Linux.
+- **Internationalization (i18n):** Automatically switches between **English** and **German** based on system settings.
+- **Persistent Configuration:** Rules are saved automatically using `QSettings` (Registry/Ini/Plist).
 
 ## Status
 
@@ -74,7 +76,6 @@
 
 ![GitHub Issues](https://img.shields.io/github/issues/Zheng-Bote/file-sorter)
 ![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Zheng-Bote/file-sorter)
-
 
 ---
 
@@ -97,13 +98,15 @@ To remove a rule, select the row and click "-".
 > You can modify rules while "Automatic Monitoring" is active. The changes will be applied immediately.
 
 ### Command Line Options
+
 You can start the application via the command line (or a shortcut) to launch it directly in the background with monitoring enabled.
 
-| Option | Description |
-| :--- | :--- |
+| Option              | Description                                                                                      |
+| :------------------ | :----------------------------------------------------------------------------------------------- |
 | `-m`, `--minimized` | Starts the application minimized in the taskbar and automatically enables the folder monitoring. |
 
 **Example:**
+
 ```bash
 FileSorter.exe --minimized
 ```
@@ -117,36 +120,65 @@ FileSorter.exe --minimized
 
 ![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/win11_autostart_de.png)
 
-
 ---
+
 ([back to top](#top))
 
 # 🚀 Getting Started
 
 ## Windows
 
-### Setup 
+### Setup
 
 There are two options:
 
 1. Unzip
 
    -> no Administrator rights needed
+
 - unzip `FileSorter-1.0.0-win64.zip` and execute `FilesSorter.exe`
 
 2. Setup
 
    -> no Administrator rights needed (optional)
+
 - execute `FileSorter_x86_amd64_v1.0.0_setup.exe` and follow the instructions.
 - doubleclick `FileSorter.exe` or your Desktop-Shortcut
 
-## Build  
+## Linux
 
-***Prerequisites***
+Just download the AppImage and make it executable:
+
+```Bash
+chmod +x FileSorter-1.0.0-x86_64.AppImage
+sudo cp FileSorter-1.0.0-x86_64.AppImage /usr/local/bin/
+```
+
+And copy the desktop file to your desktop (Path depends on your Linux distribution):
+
+```Bash
+sudo cp resources/FileSorter.desktop ~/.local/share/applications/
+```
+
+And add it to your autostart (Path depends on your Linux distribution):
+
+```Bash
+sudo cp resources/FileSorter_autostart.desktop ~/.config/autostart/
+```
+
+And copy the app_icon (Path depends on your Linux distribution):
+
+```Bash
+sudo cp resources/app_icon.png /usr/local/share/icons/hicolor/256x256/apps/FileSorter.png
+```
+
+## Build
+
+**_Prerequisites_**
+
 - C++ Compiler supporting C++23 (GCC 13+, Clang 16+, MSVC 2022 v17.6+)
 - CMake (3.23 or newer)
 - Qt 6 (Core, Gui, Widgets, LinguistTools)
-
 
 ### Build Instructions
 
@@ -164,7 +196,7 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 # 4. Build
 cmake --build . --config Release
 
-# 5. Installer packages
+# 5. Installer packages (optional, Windows only)
 cpack.exe -C Release
 # in some cases (if Chocolatey is installed on your system) the complete path to your Qt cpack is needed
 & "C:\Qt\Tools\CMake_64\bin\cpack.exe" -C Release
@@ -176,6 +208,7 @@ cpack.exe -C Release
 file-sorter/
 ├── CMakeLists.txt       # Build configuration
 ├── resources.qrc        # Resource file (icons, etc.)
+├── resources/           # Resource files (icons, logos, for AppImage etc.)
 ├── include/             # Header files (*.hpp)
 ├── src/                 # Source files (*.cpp)
 ├── translations/        # Translation files (*.ts)
@@ -190,13 +223,13 @@ The application follows a clean separation of concerns, splitting the User Inter
 
 1.  **MainWindow (UI):** Handles user interaction, configuration (TableWidget), and displays logs. It manages the application lifecycle and processes optional CLI arguments (QCommandLineParser) to handle minimized starts.
 2.  **FileSorter (Logic):** A `QObject` based worker class. It handles:
-    * File system monitoring (`QFileSystemWatcher`).
-    * Debouncing logic to wait for file write operations.
-    * The actual sorting algorithm (Pattern matching & `std::filesystem`/`QDir` operations).
+    - File system monitoring (`QFileSystemWatcher`).
+    - Debouncing logic to wait for file write operations.
+    - The actual sorting algorithm (Pattern matching & `std::filesystem`/`QDir` operations).
 3.  **Config & Resources:**
-    * `rz_config.hpp`: Generated by CMake for versioning and metadata.
-    * `QSettings`: Stores sorting rules persistently.
-    * `Qt Linguist`: Handles translations (`.ts` / `.qm`).
+    - `rz_config.hpp`: Generated by CMake for versioning and metadata.
+    - `QSettings`: Stores sorting rules persistently.
+    - `Qt Linguist`: Handles translations (`.ts` / `.qm`).
 
 ### Class Diagram
 
@@ -260,7 +293,9 @@ flowchart TD
     L --> M
     M --> N["Log Action"]
 ```
+
 ---
+
 ([back to top](#top))
 
 # 🤝 Contributing
@@ -286,8 +321,6 @@ Copyright (c) 2025 ZHENG Robert
 ## Code Contributors
 
 ![Contributors](https://img.shields.io/github/contributors/Zheng-Bote/qt-desktop_file_encryption-decryption?color=dark-green)
-
-
 
 <hr>
 ([back to top](#top))
