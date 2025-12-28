@@ -11,7 +11,8 @@ ICON_SOURCE="$PROJECT_DIR/resources/app_icon.png"
 DESKTOP_FILE="$PROJECT_DIR/resources/$APP_NAME.desktop"
 
 # QMake (wird für das Plugin benötigt, um Qt-Pfade zu finden)
-export QMAKE="qmake6"
+#export QMAKE="qmake6"
+export QMAKE="${QMAKE:-qmake6}"
 
 # Check Voraussetzungen
 for tool in patchelf file $QMAKE; do
