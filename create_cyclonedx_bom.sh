@@ -1,12 +1,12 @@
 #!/usr/bin/bash
 set -e
 
-VERSION="1.1.0"
+VERSION="1.2.0"
 
-nvm use --lts
+#nvm use --lts
 # npm install -g @cyclonedx/cdxgen
 
-atom J-Xmx16g usages -o ./docs/app.atom --slice-outfile ./docs/atom_v${VERSION}.json -l cpp ./src
+/home/zb_bamboo/Downloads/atom/bin/atom -J-Xmx16g usages -o ./docs/app.atom --slice-outfile ./docs/atom_v${VERSION}.json -l cpp ./src
 cdxgen -o ./docs/sbom-cyclonedx_v${VERSION}.json -t cpp --usages-slices-file ./docs/atom_v${VERSION}.json --author "ZHENG Robert" --deep -r ./src
 
 

@@ -1,21 +1,19 @@
 /*
- * SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net>
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net>
  * SPDX-License-Identifier: MIT
  *
- * @author ZHENG Robert
- * @version 1.1.0
+ * @file MainWindow.hpp
+ * @brief Header file for the MainWindow class.
+ * @version 1.2.0
+ * @date 2026-02-09
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
  */
 #pragma once
 
 #include <QCheckBox>
 #include <QLabel>
-/**
- * @file MainWindow.hpp
- * @brief Header file for the MainWindow class.
- *
- * Defines the main GUI window for the FileSorter application.
- */
-
 #include <QMainWindow>
 #include <QTableWidget>
 #include <QTextEdit>

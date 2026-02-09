@@ -1,18 +1,16 @@
 /*
- * SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net>
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net>
  * SPDX-License-Identifier: MIT
  *
- * @author ZHENG Robert
- * @version 1.1.0
- */
-#pragma once
-
-/**
  * @file AboutDialog.hpp
  * @brief Header file for the AboutDialog class.
+ * @version 1.2.0
+ * @date 2026-02-09
  *
- * Defines the dialog window that displays application information.
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
  */
+#pragma once
 
 #include <QDialog>
 

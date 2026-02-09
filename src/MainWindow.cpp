@@ -1,13 +1,14 @@
 /*
- * SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net>
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net>
  * SPDX-License-Identifier: MIT
  *
- * @author ZHENG Robert
- * @version 1.1.0
- */
-/**
  * @file MainWindow.cpp
  * @brief Implementation of the MainWindow class.
+ * @version 1.2.0
+ * @date 2026-02-09
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
  */
 
 #include "MainWindow.hpp"
@@ -23,6 +24,17 @@
 #include "AboutDialog.hpp"
 #include "rz_config.hpp"
 
+/**
+ * @brief Constructs a new MainWindow object.
+ *
+ * Initializes the UI, status bar, and loads saved settings.
+ * If startMinimized is true, the application starts minimized to the tray (if
+ * applicable) or just minimized window state, and monitoring is enforced.
+ *
+ * @param parent The parent widget.
+ * @param startMinimized Flag to indicate if the application should start
+ * minimized.
+ */
 MainWindow::MainWindow(QWidget *parent, bool startMinimized)
     : QMainWindow(parent), m_sorter(new FileSorter(this)) {
 
@@ -37,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent, bool startMinimized)
     if (!m_autoSortCheck->isChecked()) {
       m_autoSortCheck->setChecked(true);
       m_logOutput->append(
-          tr("Gestartet im minimierten Modus (Überwachung erzwungen)."));
+          tr("Started in minimized mode (monitoring enforced)."));
     }
   }
 
@@ -52,8 +64,18 @@ MainWindow::MainWindow(QWidget *parent, bool startMinimized)
           &MainWindow::onRulesModified);
 }
 
+/**
+ * @brief Destroys the MainWindow object.
+ *
+ * Saves the current settings before destruction.
+ */
 MainWindow::~MainWindow() { saveSettings(); }
 
+/**
+ * @brief Sets up the user interface.
+ *
+ * Creates and arranges widgets, layouts, and connects signals and slots.
+ */
 void MainWindow::setupUi() {
   QWidget *centralWidget = new QWidget(this);
   setCentralWidget(centralWidget);
@@ -103,6 +125,11 @@ void MainWindow::setupUi() {
   resize(600, 500);
 }
 
+/**
+ * @brief Adds a new category row to the table.
+ *
+ * Inserts a new row with default values for folder name and extensions.
+ */
 void MainWindow::onAddCategory() {
   int row = m_table->rowCount();
   m_table->insertRow(row);
@@ -118,6 +145,11 @@ void MainWindow::onAddCategory() {
   onRulesModified();
 }
 
+/**
+ * @brief Removes the currently selected category from the table.
+ *
+ * If a row is selected, it is removed and the rules are updated.
+ */
 void MainWindow::onRemoveCategory() {
   int row = m_table->currentRow();
   if (row >= 0) {
@@ -127,11 +159,22 @@ void MainWindow::onRemoveCategory() {
   }
 }
 
+/**
+ * @brief Manually triggers the sorting process.
+ *
+ * Reads the current configuration from the UI and initiates the sort.
+ */
 void MainWindow::onStartSort() {
   // Manual sorting also updates the rules in the sorter
   m_sorter->sortDownloads(getCategoriesFromUi());
 }
 
+/**
+ * @brief Handles changes to the sorting rules.
+ *
+ * Called when the user modifies the table. If auto-sorting is active,
+ * the new rules are immediately applied to the sorter.
+ */
 void MainWindow::onRulesModified() {
   // 1. Save settings (optional, but handy)
   // saveSettings();
@@ -149,6 +192,11 @@ void MainWindow::onRulesModified() {
   }
 }
 
+/**
+ * @brief Toggles automatic sorting monitoring.
+ *
+ * @param checked True if monitoring should be enabled, false otherwise.
+ */
 void MainWindow::onAutoSortToggled(bool checked) {
   // If we activate, we must also give the sorter the current rules
   if (checked) {
@@ -158,6 +206,13 @@ void MainWindow::onAutoSortToggled(bool checked) {
   m_sorter->setMonitoring(checked);
 }
 
+/**
+ * @brief Retrieves the sorting categories from the UI table.
+ *
+ * Parses the table rows to create a list of Category objects.
+ *
+ * @return QList<Category> A list of configured categories.
+ */
 QList<Category> MainWindow::getCategoriesFromUi() const {
   QList<Category> categories;
   for (int i = 0; i < m_table->rowCount(); ++i) {
@@ -183,6 +238,12 @@ QList<Category> MainWindow::getCategoriesFromUi() const {
   return categories;
 }
 
+/**
+ * @brief Saves the current application settings.
+ *
+ * Stores the window state, auto-sort preference, and category rules to
+ * persistent storage.
+ */
 void MainWindow::saveSettings() {
   QSettings settings("ZhengRobert", "FileSorter");
 
@@ -201,6 +262,12 @@ void MainWindow::saveSettings() {
   settings.endArray();
 }
 
+/**
+ * @brief Loads the application settings.
+ *
+ * Restores the window state, auto-sort preference, and category rules from
+ * persistent storage.
+ */
 void MainWindow::loadSettings() {
   QSettings settings("ZhengRobert", "FileSorter");
 
@@ -235,6 +302,12 @@ void MainWindow::loadSettings() {
   m_autoSortCheck->setChecked(autoSort);
 }
 
+/**
+ * @brief Initializes the status bar.
+ *
+ * Adds a version label to the status bar that can be double-clicked to show the
+ * About dialog.
+ */
 void MainWindow::setupStatusBar() {
   // Create label with version
   QString versionText =
@@ -254,6 +327,16 @@ void MainWindow::setupStatusBar() {
 }
 
 // EventFilter Implementation
+/**
+ * @brief Filters events for the MainWindow and its children.
+ *
+ * Specifically handles double-click events on the version label in the status
+ * bar.
+ *
+ * @param obj The object the event is sent to.
+ * @param event The event that occurred.
+ * @return true if the event was handled, false otherwise.
+ */
 bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
   // Check if the event comes from the VersionLabel AND is a double click
   if (obj == m_versionLabel && event->type() == QEvent::MouseButtonDblClick) {
@@ -265,6 +348,9 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
   return QMainWindow::eventFilter(obj, event);
 }
 
+/**
+ * @brief Shows the About dialog.
+ */
 void MainWindow::showAboutDialog() {
   AboutDialog dlg(this);
   dlg.exec();

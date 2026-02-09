@@ -1,13 +1,14 @@
 /*
- * SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net>
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net>
  * SPDX-License-Identifier: MIT
  *
- * @author ZHENG Robert
- * @version 1.1.0
- */
-/**
  * @file main.cpp
  * @brief Main entry point for the FileSorter application.
+ * @version 1.2.0
+ * @date 2026-02-09
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
  */
 
 #include "MainWindow.hpp"
@@ -17,6 +18,16 @@
 #include <QLocale>
 #include <QTranslator>
 
+/**
+ * @brief Main entry point.
+ *
+ * Initializes the Qt application, loads translations, parses command line
+ * arguments, and launches the main window.
+ *
+ * @param argc Number of command line arguments.
+ * @param argv Array of command line arguments.
+ * @return int Execution return code.
+ */
 int main(int argc, char *argv[]) {
   QApplication a(argc, argv);
 
@@ -47,7 +58,7 @@ int main(int argc, char *argv[]) {
 
   // --- NEW: Command Line Parsing ---
   QCommandLineParser parser;
-  parser.setApplicationDescription("FileSorter - Automatische Dateisortierung");
+  parser.setApplicationDescription("FileSorter - Automatic file sorting");
   parser.addHelpOption();
   parser.addVersionOption();
 
@@ -55,7 +66,7 @@ int main(int argc, char *argv[]) {
   QCommandLineOption minimizedOption(
       QStringList() << "m" << "minimized",
       QCoreApplication::translate(
-          "main", "Startet minimiert und aktiviert die Überwachung."));
+          "main", "Starts minimized and activates monitoring."));
   parser.addOption(minimizedOption);
 
   parser.process(a);

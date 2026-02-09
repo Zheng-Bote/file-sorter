@@ -1,13 +1,14 @@
 /*
- * SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net>
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net>
  * SPDX-License-Identifier: MIT
  *
- * @author ZHENG Robert
- * @version 1.1.0
- */
-/**
  * @file AboutDialog.cpp
  * @brief Implementation of the AboutDialog class.
+ * @version 1.2.0
+ * @date 2026-02-09
+ *
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
  */
 
 #include "AboutDialog.hpp"
@@ -18,6 +19,14 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
+/**
+ * @brief Constructs the AboutDialog object.
+ *
+ * Sets up the UI elements to display application information including version,
+ * description, copyright, and technical details.
+ *
+ * @param parent The parent widget.
+ */
 AboutDialog::AboutDialog(QWidget *parent) : QDialog(parent) {
   setWindowTitle(tr("About") + " " + QString::fromStdString(PROG_LONGNAME));
   setModal(true);

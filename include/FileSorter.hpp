@@ -1,18 +1,16 @@
 /*
- * SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net>
+ * SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net>
  * SPDX-License-Identifier: MIT
  *
- * @author ZHENG Robert
- * @version 1.1.0
- */
-#pragma once
-
-/**
  * @file FileSorter.hpp
  * @brief Header file for the FileSorter class and related structures.
+ * @version 1.2.0
+ * @date 2026-02-09
  *
- * Defines the core logic for monitoring and sorting files.
+ * @author ZHENG Robert (robert@hase-zheng.net)
+ * @copyright Copyright (c) 2026 ZHENG Robert
  */
+#pragma once
 
 #include <QFileSystemWatcher>
 #include <QList>
