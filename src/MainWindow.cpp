@@ -205,7 +205,7 @@ void MainWindow::loadSettings() {
   QSettings settings("ZhengRobert", "FileSorter");
 
   bool autoSort = settings.value("autoSort", false).toBool();
-  m_autoSortCheck->setChecked(autoSort);
+  // Bug: 1.1.0: m_autoSortCheck->setChecked(autoSort);
 
   int size = settings.beginReadArray("rules");
   if (size == 0) {
@@ -230,6 +230,9 @@ void MainWindow::loadSettings() {
     m_table->setItem(i, 2, checkItem);
   }
   settings.endArray();
+
+  // Bugfix: 1.1.0: m_autoSortCheck->setChecked(autoSort);
+  m_autoSortCheck->setChecked(autoSort);
 }
 
 void MainWindow::setupStatusBar() {

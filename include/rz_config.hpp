@@ -19,10 +19,10 @@ static const std::string PROJECT_DESCRIPTION = "Sorts your downloads automatical
 
 static const std::string PROJECT_EXECUTABLE = "FileSorter";
 
-static const std::string PROJECT_VERSION = "1.1.0";
+static const std::string PROJECT_VERSION = "1.1.1";
 static const std::int32_t PROJECT_VERSION_MAJOR{1};
 static const std::int32_t PROJECT_VERSION_MINOR{1};
-static const std::int32_t PROJECT_VERSION_PATCH{0};
+static const std::int32_t PROJECT_VERSION_PATCH{1};
 
 static const std::string PROJECT_HOMEPAGE_URL = "https://github.com/Zheng-Bote/file-sorter";
 static const std::string PROG_AUTHOR = "ZHENG Bote";
@@ -32,4 +32,4 @@ static const std::string PROG_ORGANIZATION_DOMAIN = "net.hase-zheng";
 
 static const std::string CMAKE_CXX_STANDARD = "c++23";
 static const std::string CMAKE_CXX_COMPILER = "Clang 20.1.8";
-static const std::string CMAKE_QT_VERSION = "6.10.0";
+static const std::string CMAKE_QT_VERSION = "6.9.2";
