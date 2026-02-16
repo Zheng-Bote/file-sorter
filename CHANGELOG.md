@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Changelog](#changelog)
+  - [[1.2.1] - 2026-02-16](#121---2026-02-16)
+    - [Added](#added)
+    - [Changed](#changed)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

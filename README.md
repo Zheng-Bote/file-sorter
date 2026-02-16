@@ -14,15 +14,14 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 **Table of Contents**
 
 - [Description](#description)
   - [✨ Key Features](#-key-features)
   - [Status](#status)
-- [Documentation \& Screenshots](#documentation--screenshots)
+- [Documentation & Screenshots](#documentation--screenshots)
   - [Usage](#usage)
-  - [⚙️ Configuration](#️-configuration)
+  - [⚙️ Configuration](#-configuration)
     - [Command Line Options](#command-line-options)
   - [Screenshots](#screenshots)
     - [Autostart Win11](#autostart-win11)
@@ -33,7 +32,7 @@
   - [Build](#build)
     - [Build Instructions](#build-instructions)
     - [Project Structure](#project-structure)
-  - [🏗️ Architecture](#️-architecture)
+  - [🏗️ Architecture](#-architecture)
     - [Component Overview](#component-overview)
     - [Class Diagram](#class-diagram)
     - [Component Diagram](#component-diagram)
