@@ -2,11 +2,11 @@ SPDXVersion: SPDX-2.1
 DataLicense: CC0-1.0
 SPDXID: SPDXRef-DOCUMENT
 DocumentName: file-sorter
-DocumentNamespace: http://spdx.org/spdxdocs/spdx-v2.1-5d98fa4c-f314-44e8-a6db-8a343791bb7d
+DocumentNamespace: http://spdx.org/spdxdocs/spdx-v2.1-7e724649-9c86-456e-a277-848a96cb1fa9
 Creator: Person: Anonymous ()
 Creator: Organization: Anonymous ()
 Creator: Tool: reuse-6.2.0
-Created: 2025-12-28T11:57:03Z
+Created: 2026-02-16T14:32:14Z
 CreatorComment: <text>This document was created automatically using available reuse information consistent with REUSE.</text>
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-b77051a31b9af9d7a3d7dcd8b18988f1
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-8d9c1839150b7275ef8ed70f471832ed
@@ -14,37 +14,38 @@ Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-997877e9497730ec2d82ec485acc147
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-4507561f425b645ff578d2dae60a1674
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-3ddf9bbd2a7a3fb95164cf8d64a62b5d
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-4c850f738b1a8fcac63ec202d29f6db2
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-d210447d962874855f09700f4b9e6650
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-21d8d67205da83e7440cfe9c8c7648e1
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-aa2da774366388b0aa578250d20c524c
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-77cf60ed21a595d55cd01a94fa3689d8
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-7636604b35a093330e6335e6bf44c83d
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-4d2461bf1db8612f3f0d72c1464d5ede
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-5c16371b77dd655191bfb277e13899d1
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-224a7c4c501192cc5468add5dc6d6c3f
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-167edd4d5e0257c596e31dafde1f42e4
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-2990f124c67a296e89425837a53fa329
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-4ba5edbb464648d726b957fd20f3c486
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-7c18270e8b2eeade9ae6884a0aa54295
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-4c9a4c78c0fe1bf4109b35c5b09a30ad
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-59a34cefd4f91dd591506dfa9135d4e0
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-dee058372d7aeba1b0be86a57b78fefd
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-3de06a0ee6fde3eff35a40e843f3c261
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-2eb7ab6503925772a8473ca220bba2b5
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-83d689e78054b232552664fb2d6e9cab
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-b34a7e0cba79c2fc2f72cfe4e29ac370
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-1d478e57294127c430f458939f8809a8
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-e658ed6f449c2f74ba8da7f91b4773a6
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-b91124f5c9f3e4483d6c8a8f035c000b
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-3e375fb721f514f112d695a26d6058ea
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-9c92a3d2198b1b1092bb67ef8ad03c2d
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-1116fb594b7380fa57d33373dfa22388
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-7154dab555a2af4a04a9354be742243c
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-f74fef657050b935388ca1dc7fee1948
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-f108ccbd3cc29306c82868d32c4b48bb
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-73f147a992e4c324c6a7c11a6c185606
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-82101a15df6f2480e6302eca3416f923
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-21523a2a880eb7105ce65803ba1c7bf7
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-1d86442db7964c19f2db3643fe4ab4e3
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-0086f1f027fc1b6e208412cc0c976d5d
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-0dfaeb97f98d672018cf04139a3f3923
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-b4cee5afe47c07af7d8fcaf57a779397
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-c6f85b9b1ef20ae4147311c2eacaf3b1
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-41acf0fca7e5fb3d7aa52dbd19a29c5d
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-9e22d0e566451ffd52eb5509ff5db95e
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-941da0890cecafbf43be922afc436a3d
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-37284ddb7297581ad49e25bd1b04f0df
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-8d4d7404b8540087f047a5dd8a4a4571
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-3c4f2b0201ffff450d264559492abe14
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-4fb716e34b9dc6c89e42064f23b956a3
-Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-788fae7f48466ab2719ff3f295c2a54b
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-5042046fa3a6f6e81416bc28647ef5b2
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-dc144b0664f55d79ef5c793dee5df20b
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-bcd7ae898602cff3886449d7d1882140
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-0af84d284141dc4ad165a8960d31c1a6
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-94f883f05eb1dbf1dcead72e8b45d558
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-7a405cbc70302563291b573f4fb03b41
 
 FileName: ./.github/actions/doctoc/README.md
 SPDXID: SPDXRef-b77051a31b9af9d7a3d7dcd8b18988f1
@@ -115,33 +116,39 @@ FileChecksum: SHA1: 2069f7d594fdb723068dbc6e606a79f454b0ca3a
 LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
 
+FileName: ./.github/workflows/build_release.yml
+SPDXID: SPDXRef-d210447d962874855f09700f4b9e6650
+FileChecksum: SHA1: 3e68d210e73028158db42cbab84e2d85366f8a6c
+LicenseConcluded: NOASSERTION
+FileCopyrightText: NONE
+
 FileName: ./.github/workflows/repo-create_doctoc_md.yml
 SPDXID: SPDXRef-21d8d67205da83e7440cfe9c8c7648e1
 FileChecksum: SHA1: 8ab21f1b0c2091bd9b1ef2475963c4e9da4bab98
 LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
 
+FileName: ./.github/workflows/sync-to-gitlab.yml
+SPDXID: SPDXRef-5c16371b77dd655191bfb277e13899d1
+FileChecksum: SHA1: 983c0d9544d779e2b4250de05f4d20c13fb66de8
+LicenseConcluded: NOASSERTION
+FileCopyrightText: NONE
+
 FileName: ./.gitignore
-SPDXID: SPDXRef-aa2da774366388b0aa578250d20c524c
-FileChecksum: SHA1: a5513ce82faab9f23afb312c4a30487a1b98679b
+SPDXID: SPDXRef-224a7c4c501192cc5468add5dc6d6c3f
+FileChecksum: SHA1: 18d1188c199c11f32d040714bad844b752d73a7c
 LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
 
 FileName: ./CMakeLists.txt
-SPDXID: SPDXRef-77cf60ed21a595d55cd01a94fa3689d8
-FileChecksum: SHA1: 34b172ebf62a82512f095f10b7d55eb0597c1ac7
-LicenseConcluded: NOASSERTION
-FileCopyrightText: NONE
-
-FileName: ./CMakeLists.txt.user
-SPDXID: SPDXRef-7636604b35a093330e6335e6bf44c83d
-FileChecksum: SHA1: 7aafd6100a5943f7fe04c29d6971539671074031
+SPDXID: SPDXRef-167edd4d5e0257c596e31dafde1f42e4
+FileChecksum: SHA1: 0a0d50224c662bdaff00dc0e67ccbb7e22deb704
 LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
 
 FileName: ./README.md
-SPDXID: SPDXRef-4d2461bf1db8612f3f0d72c1464d5ede
-FileChecksum: SHA1: f748687ebb79b5a5001de1cb3081de0aea696433
+SPDXID: SPDXRef-2990f124c67a296e89425837a53fa329
+FileChecksum: SHA1: e462f382652118ba310aaf99d346b1fe9628834d
 LicenseConcluded: NOASSERTION
 FileCopyrightText: <text>Copyright (C) 2025 ZHENG Robert</text>
 
@@ -164,20 +171,14 @@ LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
 
 FileName: ./create_appimage_modern.sh
-SPDXID: SPDXRef-59a34cefd4f91dd591506dfa9135d4e0
-FileChecksum: SHA1: e5ff1326dfe96c9c952ecee53bd101e4ea05ad6f
+SPDXID: SPDXRef-2eb7ab6503925772a8473ca220bba2b5
+FileChecksum: SHA1: 137dd1a3bb50aa9ab86d4a5ca21995235e0032c1
 LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
 
 FileName: ./create_cyclonedx_bom.sh
-SPDXID: SPDXRef-dee058372d7aeba1b0be86a57b78fefd
-FileChecksum: SHA1: ca1b82a30402e2675d4162dc130e7e26873fe6ac
-LicenseConcluded: NOASSERTION
-FileCopyrightText: NONE
-
-FileName: ./docs/atom_v1.1.0.json
-SPDXID: SPDXRef-3de06a0ee6fde3eff35a40e843f3c261
-FileChecksum: SHA1: 8367c4d4c8538816e43bbbf007f2ded5e1662f13
+SPDXID: SPDXRef-83d689e78054b232552664fb2d6e9cab
+FileChecksum: SHA1: 652922c9e6ec7064f4c79b1ba4ea7e8e46785812
 LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
 
@@ -199,40 +200,41 @@ FileChecksum: SHA1: 984dfd0fd8404e0c4e8b467f8dc86dcc2ed60dc6
 LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
 
-FileName: ./docs/sbom_v1.1.0.json
-SPDXID: SPDXRef-b91124f5c9f3e4483d6c8a8f035c000b
-FileChecksum: SHA1: 81f88e43d15efa5b2e307d55d723db1fce9541f5
+FileName: ./docs/sbom-cyclonedx_v1.2.1.json
+SPDXID: SPDXRef-f74fef657050b935388ca1dc7fee1948
+FileChecksum: SHA1: eed07a989a05ceb9ce2c1e99898c90eed48b65c4
 LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
 
 FileName: ./include/AboutDialog.hpp
-SPDXID: SPDXRef-3e375fb721f514f112d695a26d6058ea
-FileChecksum: SHA1: 59f9e9a31f32ba74917f4f9a75166cd7015406f6
+SPDXID: SPDXRef-f108ccbd3cc29306c82868d32c4b48bb
+FileChecksum: SHA1: 43cdbbce7e4f3e2ca78582d3725b4aa98dbdaa93
 LicenseConcluded: NOASSERTION
 LicenseInfoInFile: MIT
-FileCopyrightText: <text>SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net></text>
+FileCopyrightText: <text>Copyright (C) 2026 ZHENG Robert
+SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net></text>
 
 FileName: ./include/FileSorter.hpp
-SPDXID: SPDXRef-9c92a3d2198b1b1092bb67ef8ad03c2d
-FileChecksum: SHA1: 8b6aeb347a82caeffdafa90dd66e610737a8ce9b
+SPDXID: SPDXRef-73f147a992e4c324c6a7c11a6c185606
+FileChecksum: SHA1: 1877c6cb4d0862a879738105c23a1949e48a27f0
 LicenseConcluded: NOASSERTION
 LicenseInfoInFile: MIT
-FileCopyrightText: <text>SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net></text>
+FileCopyrightText: <text>Copyright (C) 2026 ZHENG Robert
+SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net></text>
 
 FileName: ./include/MainWindow.hpp
-SPDXID: SPDXRef-1116fb594b7380fa57d33373dfa22388
-FileChecksum: SHA1: ac50adc64bcd9fdfeac58381d08f3ba11905aaf8
+SPDXID: SPDXRef-82101a15df6f2480e6302eca3416f923
+FileChecksum: SHA1: ce08a6c01ecf8b8144a12908c0cf0aefa7df6d0c
 LicenseConcluded: NOASSERTION
 LicenseInfoInFile: MIT
-FileCopyrightText: <text>SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net></text>
+FileCopyrightText: <text>Copyright (C) 2026 ZHENG Robert
+SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net></text>
 
 FileName: ./include/rz_config.hpp
-SPDXID: SPDXRef-7154dab555a2af4a04a9354be742243c
-FileChecksum: SHA1: 274f991b3d00e1047841a8f9bf90ce84eb9f60ab
+SPDXID: SPDXRef-21523a2a880eb7105ce65803ba1c7bf7
+FileChecksum: SHA1: fdff87efc01d3f07e8de4cc757e3308552edc125
 LicenseConcluded: NOASSERTION
-LicenseInfoInFile: MIT
-FileCopyrightText: <text>Copyright (C) 2025 ZHENG Robert
-SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net></text>
+FileCopyrightText: <text>Copyright (C) 2025 ZHENG Robert</text>
 
 FileName: ./resources.qrc
 SPDXID: SPDXRef-1d86442db7964c19f2db3643fe4ab4e3
@@ -246,8 +248,8 @@ FileChecksum: SHA1: 04da1ddee5b67b86a803e04b29d695963b405501
 LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
 
-FileName: ./resources/FileSorter_linux-menu-autostarter.desktop
-SPDXID: SPDXRef-0dfaeb97f98d672018cf04139a3f3923
+FileName: ./resources/FileSorter_autostart.desktop
+SPDXID: SPDXRef-b4cee5afe47c07af7d8fcaf57a779397
 FileChecksum: SHA1: c3410a9a4df3018f90e927c392d4616d9999c65d
 LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
@@ -277,38 +279,48 @@ LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
 
 FileName: ./src/AboutDialog.cpp
-SPDXID: SPDXRef-37284ddb7297581ad49e25bd1b04f0df
-FileChecksum: SHA1: 63685ebab444014ae44cc646abff141cae793222
+SPDXID: SPDXRef-5042046fa3a6f6e81416bc28647ef5b2
+FileChecksum: SHA1: 7ec73734d1ec698e1eda9a115322fb8503dd30c9
 LicenseConcluded: NOASSERTION
 LicenseInfoInFile: MIT
-FileCopyrightText: <text>SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net>
+FileCopyrightText: <text>Copyright (C) 2026 ZHENG Robert
+SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net>
 © %1 %2").arg(QString::fromStdString(PROG_CREATED),
 Copyright & Author</text>
 
 FileName: ./src/FileSorter.cpp
-SPDXID: SPDXRef-8d4d7404b8540087f047a5dd8a4a4571
-FileChecksum: SHA1: 3f3c301f84eb702b71c82aa1bbb404188c6d8db3
+SPDXID: SPDXRef-dc144b0664f55d79ef5c793dee5df20b
+FileChecksum: SHA1: 41c7288267f2f5b5116ea50d18e1011f9a468a95
 LicenseConcluded: NOASSERTION
 LicenseInfoInFile: MIT
-FileCopyrightText: <text>SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net></text>
+FileCopyrightText: <text>Copyright (C) 2026 ZHENG Robert
+SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net></text>
 
 FileName: ./src/MainWindow.cpp
-SPDXID: SPDXRef-3c4f2b0201ffff450d264559492abe14
-FileChecksum: SHA1: 06cd95d46c88fdf3d65a95dd7d1ba4e77926258c
+SPDXID: SPDXRef-bcd7ae898602cff3886449d7d1882140
+FileChecksum: SHA1: 386751fe367ca8a226e16cc63c08faa079d7691d
 LicenseConcluded: NOASSERTION
 LicenseInfoInFile: MIT
-FileCopyrightText: <text>SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net></text>
+FileCopyrightText: <text>Copyright (C) 2026 ZHENG Robert
+SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net></text>
 
 FileName: ./src/main.cpp
-SPDXID: SPDXRef-4fb716e34b9dc6c89e42064f23b956a3
-FileChecksum: SHA1: 6d5282d90192ce86aef4998d970feb8f484299c2
+SPDXID: SPDXRef-0af84d284141dc4ad165a8960d31c1a6
+FileChecksum: SHA1: 1b945188f0ff64aaa7d310d865b7fab530e642c1
 LicenseConcluded: NOASSERTION
 LicenseInfoInFile: MIT
-FileCopyrightText: <text>SPDX-FileCopyrightText: 2025 ZHENG Robert <robert@hase-zheng.net></text>
+FileCopyrightText: <text>Copyright (C) 2026 ZHENG Robert
+SPDX-FileCopyrightText: 2026 ZHENG Robert <robert@hase-zheng.net></text>
+
+FileName: ./translations/FileSorter_de.qm
+SPDXID: SPDXRef-94f883f05eb1dbf1dcead72e8b45d558
+FileChecksum: SHA1: 6fffaadbfb7475a7408b98ea7e971e1a60d13aa0
+LicenseConcluded: NOASSERTION
+FileCopyrightText: NONE
 
 FileName: ./translations/FileSorter_de.ts
-SPDXID: SPDXRef-788fae7f48466ab2719ff3f295c2a54b
-FileChecksum: SHA1: 0c8e9ea11c729371e3a4ef1a07c484dda4c2b854
+SPDXID: SPDXRef-7a405cbc70302563291b573f4fb03b41
+FileChecksum: SHA1: 33013147d87b7b006f657acedae9c17557b64a40
 LicenseConcluded: NOASSERTION
 FileCopyrightText: NONE
 

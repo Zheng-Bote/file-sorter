@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 set -e
 
-VERSION="1.2.0"
+VERSION="1.2.1"
 
 #nvm use --lts
 # npm install -g @cyclonedx/cdxgen
@@ -14,7 +14,7 @@ cdxgen -o ./docs/sbom-cyclonedx_v${VERSION}.json -t cpp --usages-slices-file ./d
 # sudo apt install pipx
 # pipx ensurepath
 # pipx install reuse
-reuse spdx -o docs/sbom-spdx_v${VERSION}.json
+reuse spdx -o docs/sbom-spdx_v${VERSION}.spdx
 
 shasum -a 256 ./docs/sbom-cyclonedx_v${VERSION}.json > ./docs/sbom-cyclonedx_v${VERSION}.json.sha256
-shasum -a 256 ./docs/sbom-spdx_v${VERSION}.json > ./docs/sbom-spdx_v${VERSION}.json.sha256
+shasum -a 256 ./docs/sbom-spdx_v${VERSION}.spdx > ./docs/sbom-spdx_v${VERSION}.spdx.sha256

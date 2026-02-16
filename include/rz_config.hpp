@@ -31,5 +31,5 @@ static const std::string PROG_ORGANIZATION_NAME = "ZHENG Robert";
 static const std::string PROG_ORGANIZATION_DOMAIN = "net.hase-zheng";
 
 static const std::string CMAKE_CXX_STANDARD = "c++23";
-static const std::string CMAKE_CXX_COMPILER = "MSVC 19.44.35220.0";
-static const std::string CMAKE_QT_VERSION = "6.10.1";
+static const std::string CMAKE_CXX_COMPILER = "GNU 15.2.0";
+static const std::string CMAKE_QT_VERSION = "6.9.2";
