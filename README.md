@@ -14,14 +14,15 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [Description](#description)
   - [✨ Key Features](#-key-features)
   - [Status](#status)
-- [Documentation & Screenshots](#documentation--screenshots)
+- [Documentation \& Screenshots](#documentation--screenshots)
   - [Usage](#usage)
-  - [⚙️ Configuration](#-configuration)
+  - [⚙️ Configuration](#️-configuration)
     - [Command Line Options](#command-line-options)
   - [Screenshots](#screenshots)
     - [Autostart Win11](#autostart-win11)
@@ -32,9 +33,14 @@
   - [Build](#build)
     - [Build Instructions](#build-instructions)
     - [Project Structure](#project-structure)
-  - [🏗️ Architecture](#-architecture)
+  - [🏗️ Architecture](#️-architecture)
     - [Component Overview](#component-overview)
     - [Class Diagram](#class-diagram)
+    - [Component Diagram](#component-diagram)
+    - [Use Case Diagram](#use-case-diagram)
+    - [Sequence Diagram](#sequence-diagram)
+    - [State Machine Diagram](#state-machine-diagram)
+    - [Deployment Diagram](#deployment-diagram)
     - [Sorting Flow Logic](#sorting-flow-logic)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
@@ -112,12 +118,12 @@ FileSorter.exe --minimized
 
 ## Screenshots
 
-![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/01_de.png)
-![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/about_de.png)
+![App Screenshot](/docs/img/01_de.png)
+![App Screenshot](/docs/img/about_de.png)
 
 ### Autostart Win11
 
-![App Screenshot](https://github.com/Zheng-Bote/file-sorter/blob/main/docs/img/win11_autostart_de.png)
+![App Screenshot](/docs/img/win11_autostart_de.png)
 
 ---
 
@@ -135,13 +141,13 @@ There are two options:
 
    -> no Administrator rights needed
 
-- unzip `FileSorter-1.0.0-win64.zip` and execute `FilesSorter.exe`
+- unzip `FileSorter-1.2.1-win64.zip` and execute `FilesSorter.exe`
 
 2. Setup
 
    -> no Administrator rights needed (optional)
 
-- execute `FileSorter_x86_amd64_v1.0.0_setup.exe` and follow the instructions.
+- execute `FileSorter_x86_amd64_v1.2.1_setup.exe` and follow the instructions.
 - doubleclick `FileSorter.exe` or your Desktop-Shortcut
 
 ## Linux
@@ -149,8 +155,8 @@ There are two options:
 Just download the AppImage and make it executable:
 
 ```Bash
-chmod +x FileSorter-1.0.0-x86_64.AppImage
-sudo cp FileSorter-1.0.0-x86_64.AppImage /usr/local/bin/
+chmod +x FileSorter-1.2.1-x86_64.AppImage
+sudo cp FileSorter-1.2.1-x86_64.AppImage /usr/local/bin/
 ```
 
 And copy the desktop file to your desktop (Path depends on your Linux distribution):
@@ -268,6 +274,99 @@ classDiagram
     MainWindow ..> AboutDialog : shows
     FileSorter -- QFileSystemWatcher : uses
     FileSorter -- QTimer : uses
+```
+
+### Component Diagram
+
+```mermaid
+graph TD
+    UI["MainWindow (UI)"]
+    Logic["FileSorter (Logic)"]
+    Config["QSettings"]
+    Watcher["QFileSystemWatcher"]
+    Logger["Log System"]
+
+    UI -->|controls| Logic
+    UI -->|reads/writes| Config
+    UI -->|displays| Logger
+    Logic -->|uses| Watcher
+    Logic -->|reads| Config
+    Logic -->|writes| Logger
+```
+
+### Use Case Diagram
+
+```mermaid
+graph TD
+    User((User))
+    OS((Operating System))
+
+    subgraph FileSorter [FileSorter System]
+        UC1(Configure Rules)
+        UC2(Monitor Downloads)
+        UC3(Sort Files)
+        UC4(Log Activities)
+    end
+
+    User --> UC1
+    OS --> UC2
+    UC2 --> UC3
+    UC3 --> UC4
+    User --> UC4
+```
+
+### Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant OS as Operating System
+    participant Watcher as QFileSystemWatcher
+    participant Sorter as FileSorter
+    participant Timer as QTimer
+    participant FS as File System
+
+    OS->>Watcher: Directory Changed Signal
+    Watcher->>Sorter: onDirectoryChanged()
+    Sorter->>Timer: start(2000ms)
+    Note over Sorter, Timer: Debouncing...
+    Timer-->>Sorter: timeout()
+    Sorter->>Sorter: sortDownloads()
+    Loop For each file
+        Sorter->>FS: Check file extension
+        Alt Match Rule
+            Sorter->>FS: Move file to target
+            Sorter->>Sorter: Log Success
+        Else No Match
+            Sorter->>Sorter: Skip
+        End
+    End
+```
+
+### State Machine Diagram
+
+```mermaid
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Monitoring : Enable Auto-Sort
+    Monitoring --> Debouncing : File Change Detected
+    Debouncing --> Debouncing : New Change (Reset Timer)
+    Debouncing --> Sorting : Timer Timeout
+    Sorting --> Monitoring : Sorting Complete
+    Monitoring --> Idle : Disable Auto-Sort
+    Idle --> [*]
+```
+
+### Deployment Diagram
+
+```mermaid
+graph TD
+    subgraph Workstation [User Workstation]
+        subgraph OS [Operating System]
+            FS[File System]
+            App[FileSorter App]
+        end
+    end
+    App -->|Reads/Writes| FS
 ```
 
 ### Sorting Flow Logic

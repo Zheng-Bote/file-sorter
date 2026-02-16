@@ -4,8 +4,8 @@
  *
  * @file MainWindow.cpp
  * @brief Implementation of the MainWindow class.
- * @version 1.2.0
- * @date 2026-02-09
+ * @version 1.2.1
+ * @date 2026-02-16
  *
  * @author ZHENG Robert (robert@hase-zheng.net)
  * @copyright Copyright (c) 2026 ZHENG Robert
@@ -131,23 +131,23 @@ void MainWindow::setupUi() {
  * Inserts a new row with default values for folder name and extensions.
  */
 void MainWindow::onAddCategory() {
-    m_table->blockSignals(true); // Signale temporär deaktivieren
+  m_table->blockSignals(true); // Signale temporär deaktivieren
 
-    int row = m_table->rowCount();
-    m_table->insertRow(row);
+  int row = m_table->rowCount();
+  m_table->insertRow(row);
 
-    // Standardwerte setzen
-    m_table->setItem(row, 0, new QTableWidgetItem("Documents"));
-    m_table->setItem(row, 1, new QTableWidgetItem("pdf, docx, odt"));
+  // Standardwerte setzen
+  m_table->setItem(row, 0, new QTableWidgetItem("Documents"));
+  m_table->setItem(row, 1, new QTableWidgetItem("pdf, docx, odt"));
 
-    QTableWidgetItem *checkItem = new QTableWidgetItem();
-    checkItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-    checkItem->setCheckState(Qt::Unchecked);
-    m_table->setItem(row, 2, checkItem);
+  QTableWidgetItem *checkItem = new QTableWidgetItem();
+  checkItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+  checkItem->setCheckState(Qt::Unchecked);
+  m_table->setItem(row, 2, checkItem);
 
-    m_table->blockSignals(false); // Signale wieder aktivieren
+  m_table->blockSignals(false); // Signale wieder aktivieren
 
-    onRulesModified(); // Jetzt einmalig manuell triggern, da alles bereit ist
+  onRulesModified(); // Jetzt einmalig manuell triggern, da alles bereit ist
 }
 
 /**
@@ -219,35 +219,37 @@ void MainWindow::onAutoSortToggled(bool checked) {
  * @return QList<Category> A list of configured categories.
  */
 QList<Category> MainWindow::getCategoriesFromUi() const {
-    QList<Category> categories;
-    for (int i = 0; i < m_table->rowCount(); ++i) {
-        auto itemFolder = m_table->item(i, 0);
-        auto itemExt = m_table->item(i, 1);
-        auto itemDate = m_table->item(i, 2);
+  QList<Category> categories;
+  for (int i = 0; i < m_table->rowCount(); ++i) {
+    auto itemFolder = m_table->item(i, 0);
+    auto itemExt = m_table->item(i, 1);
+    auto itemDate = m_table->item(i, 2);
 
-        // Validierung: Falls ein Item noch nicht existiert (während des Hinzufügens)
-        // oder der Ordnername leer ist, überspringen wir diese Zeile.
-        if (!itemFolder || !itemExt || !itemDate)
-            continue;
+    // Validierung: Falls ein Item noch nicht existiert (während des
+    // Hinzufügens) oder der Ordnername leer ist, überspringen wir diese Zeile.
+    if (!itemFolder || !itemExt || !itemDate)
+      continue;
 
-        QString folder = itemFolder->text().trimmed();
-        if (folder.isEmpty())
-            continue;
+    QString folder = itemFolder->text().trimmed();
+    if (folder.isEmpty())
+      continue;
 
-        // Extraktion der Extensions (erlaubt Komma, Semikolon oder Leerzeichen)
-        QString rawExts = itemExt->text();
-        QStringList exts = rawExts.split(QRegularExpression("[,;\\s]+"), Qt::SkipEmptyParts);
+    // Extraktion der Extensions (erlaubt Komma, Semikolon oder Leerzeichen)
+    QString rawExts = itemExt->text();
+    QStringList exts =
+        rawExts.split(QRegularExpression("[,;\\s]+"), Qt::SkipEmptyParts);
 
-        for (auto &e : exts)
-            e = e.trimmed().toLower().remove('.'); // Entfernt Punkte, falls User ".pdf" statt "pdf" schreibt
+    for (auto &e : exts)
+      e = e.trimmed().toLower().remove(
+          '.'); // Entfernt Punkte, falls User ".pdf" statt "pdf" schreibt
 
-        if (exts.isEmpty())
-            continue;
+    if (exts.isEmpty())
+      continue;
 
-        bool useDate = (itemDate->checkState() == Qt::Checked);
-        categories.append({folder, exts, useDate});
-    }
-    return categories;
+    bool useDate = (itemDate->checkState() == Qt::Checked);
+    categories.append({folder, exts, useDate});
+  }
+  return categories;
 }
 
 /**

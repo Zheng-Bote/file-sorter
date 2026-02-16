@@ -4,8 +4,8 @@
  *
  * @file main.cpp
  * @brief Main entry point for the FileSorter application.
- * @version 1.2.0
- * @date 2026-02-09
+ * @version 1.2.1
+ * @date 2026-02-16
  *
  * @author ZHENG Robert (robert@hase-zheng.net)
  * @copyright Copyright (c) 2026 ZHENG Robert

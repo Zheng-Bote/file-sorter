@@ -4,8 +4,8 @@
  *
  * @file FileSorter.hpp
  * @brief Header file for the FileSorter class and related structures.
- * @version 1.2.0
- * @date 2026-02-09
+ * @version 1.2.1
+ * @date 2026-02-16
  *
  * @author ZHENG Robert (robert@hase-zheng.net)
  * @copyright Copyright (c) 2026 ZHENG Robert
