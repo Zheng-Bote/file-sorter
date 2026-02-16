@@ -37,7 +37,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: "6.6.0" # Wähle deine gewünschte Version
+          version: "6.9.*" # Wähle deine gewünschte Version
           host: "windows"
           arch: "win64_msvc2019_64" # Kompatibel mit MSVC 2022
 
@@ -101,7 +101,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: "6.6.0"
+          version: "6.9.*"
           host: "linux"
 
       - name: Install SBOM Tools
