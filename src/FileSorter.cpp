@@ -77,9 +77,19 @@ void FileSorter::setMonitoring(bool enable) {
  * @param categories New list of categories to apply.
  */
 void FileSorter::updateRules(const QList<Category> &categories) {
-  m_currentCategories = categories;
-  // Optional: Log that rules were updated
-  emit logMessage("Regeln wurden aktualisiert.");
+    // Timer stoppen, falls er gerade läuft, um Konflikte zu vermeiden
+    bool timerWasActive = m_debounceTimer->isActive();
+    m_debounceTimer->stop();
+
+    // Tiefe Kopie der Liste erstellen
+    m_currentCategories = categories;
+
+    emit logMessage("Regeln wurden aktualisiert.");
+
+    // Falls der Timer lief, mit den neuen Regeln neu starten
+    if (timerWasActive) {
+        m_debounceTimer->start();
+    }
 }
 
 /**
@@ -112,92 +122,87 @@ void FileSorter::onDirectoryChanged(const QString &path) {
  * @param categories The list of categories to use for sorting.
  */
 void FileSorter::sortDownloads(const QList<Category> &categories) {
-  // Lokalen Status aktualisieren
-  m_currentCategories = categories;
-
-  QDir downloadDir(m_downloadPath);
-  if (!downloadDir.exists()) {
-    emit logMessage(tr("Error: Download folder not found."));
-    return;
-  }
-
-  // Überwachung pausieren, um Endlosschleifen durch das Verschieben zu
-  // verhindern
-  bool wasWatching = !m_watcher->directories().isEmpty();
-  if (wasWatching)
-    m_watcher->removePath(m_downloadPath);
-
-  const auto files =
-      downloadDir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot);
-
-  for (const auto &fileInfo : files) {
-    QString extension = fileInfo.suffix().toLower();
-
-    // Temporäre Browser-Dateien ignorieren
-    if (extension == "part" || extension == "crdownload" ||
-        extension == "tmp") {
-      continue;
+    // 1. Sicherheitscheck: Wenn keine Regeln da sind, gibt es nichts zu tun.
+    if (categories.isEmpty()) {
+        return;
     }
 
-    for (const auto &cat : categories) {
-      if (cat.extensions.contains(extension, Qt::CaseInsensitive)) {
+    // Lokale Kopie erstellen, um Instabilität bei gleichzeitigen UI-Updates zu vermeiden.
+    QList<Category> localCategories = categories;
 
-        // 1. Basis-Zielpfad bestimmen
-        QString targetPath =
-            m_downloadPath + QDir::separator() + cat.folderName;
-
-        // 2. Optional: Unterordner nach Datum (Jahr/Monat/Tag)
-        if (cat.useDatePath) {
-          QDateTime fileDate = fileInfo.lastModified();
-          QString dateSubPath = fileDate.toString("yyyy") + QDir::separator() +
-                                fileDate.toString("MM") + QDir::separator() +
-                                fileDate.toString("dd");
-
-          targetPath += QDir::separator() + dateSubPath;
-        }
-
-        // 3. Zielordner erstellen, falls nicht vorhanden
-        if (!QDir(targetPath).exists()) {
-          QDir().mkpath(targetPath);
-        }
-
-        // 4. Ziel-Dateinamen bestimmen
-        QString finalFileName = fileInfo.fileName();
-        QString finalFilePath = targetPath + QDir::separator() + finalFileName;
-
-        // --- NEU: Konfliktlösung (Umbenennen statt Überspringen) ---
-        if (QFile::exists(finalFilePath)) {
-          // Zeitstempel generieren: YYYY-MM-DD_hhmmss_
-          QString timestampPrefix =
-              QDateTime::currentDateTime().toString("yyyy-MM-dd_hhmmss_");
-
-          // Neuen Namen zusammensetzen
-          finalFileName = timestampPrefix + fileInfo.fileName();
-          finalFilePath = targetPath + QDir::separator() + finalFileName;
-
-          emit logMessage(tr("Duplicate detected. Renamed to: ") +
-                          finalFileName);
-        }
-        // -----------------------------------------------------------
-
-        // 5. Verschieben versuchen
-        if (QFile::rename(fileInfo.absoluteFilePath(), finalFilePath)) {
-          emit logMessage(
-              tr("Moved to %1: %2").arg(cat.folderName, finalFileName));
-        } else {
-          // Falls es trotz Umbenennung fehlschlägt (z.B. Datei
-          // geöffnet/gesperrt)
-          emit logMessage(tr("Error moving: ") + fileInfo.fileName());
-        }
-
-        // Datei wurde einer Kategorie zugeordnet -> Schleife für diese Datei
-        // beenden
-        break;
-      }
+    QDir downloadDir(m_downloadPath);
+    if (!downloadDir.exists()) {
+        emit logMessage(tr("Error: Download folder not found."));
+        return;
     }
-  }
 
-  // Überwachung wieder aktivieren, falls sie vorher an war
-  if (wasWatching)
-    m_watcher->addPath(m_downloadPath);
+    // 2. Überwachung pausieren, um Endlosschleifen durch Verschiebevorgänge zu verhindern.
+    bool wasWatching = !m_watcher->directories().isEmpty();
+    if (wasWatching) {
+        m_watcher->removePath(m_downloadPath);
+    }
+
+    // Alle Dateien im Verzeichnis auflisten (keine Ordner).
+    const auto files = downloadDir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot);
+
+    for (const auto &fileInfo : files) {
+        QString extension = fileInfo.suffix().toLower();
+
+        // Temporäre Browser-Dateien überspringen.
+        if (extension == "part" || extension == "crdownload" || extension == "tmp") {
+            continue;
+        }
+
+        // Datei gegen alle Kategorien prüfen.
+        for (const auto &cat : localCategories) {
+            if (cat.extensions.contains(extension, Qt::CaseInsensitive)) {
+
+                // A. Zielpfad bestimmen.
+                QString targetPath = m_downloadPath + QDir::separator() + cat.folderName;
+
+                // B. Optional: Unterordner nach Datum (Jahr/Monat/Tag).
+                if (cat.useDatePath) {
+                    QDateTime fileDate = fileInfo.lastModified();
+                    QString dateSubPath = fileDate.toString("yyyy") + QDir::separator() +
+                                          fileDate.toString("MM") + QDir::separator() +
+                                          fileDate.toString("dd");
+
+                    targetPath += QDir::separator() + dateSubPath;
+                }
+
+                // C. Zielordner erstellen, falls er noch nicht existiert.
+                if (!QDir(targetPath).exists()) {
+                    QDir().mkpath(targetPath);
+                }
+
+                // D. Ziel-Dateinamen und Konfliktlösung.
+                QString finalFileName = fileInfo.fileName();
+                QString finalFilePath = targetPath + QDir::separator() + finalFileName;
+
+                if (QFile::exists(finalFilePath)) {
+                    // Zeitstempel generieren, um Überschreiben zu verhindern.
+                    QString timestampPrefix = QDateTime::currentDateTime().toString("yyyy-MM-dd_hhmmss_");
+                    finalFileName = timestampPrefix + fileInfo.fileName();
+                    finalFilePath = targetPath + QDir::separator() + finalFileName;
+
+                    emit logMessage(tr("Duplicate detected. Renamed to: ") + finalFileName);
+                }
+
+                // E. Verschiebevorgang ausführen.
+                if (QFile::rename(fileInfo.absoluteFilePath(), finalFilePath)) {
+                    emit logMessage(tr("Moved to %1: %2").arg(cat.folderName, finalFileName));
+                } else {
+                    emit logMessage(tr("Error moving: ") + fileInfo.fileName());
+                }
+
+                // Sobald die Datei einer Kategorie zugeordnet wurde, nächste Datei prüfen.
+                break;
+            }
+        }
+    }
+
+    // 3. Überwachung wieder aktivieren, falls sie aktiv war.
+    if (wasWatching) {
+        m_watcher->addPath(m_downloadPath);
+    }
 }

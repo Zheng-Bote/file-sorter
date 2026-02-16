@@ -131,18 +131,23 @@ void MainWindow::setupUi() {
  * Inserts a new row with default values for folder name and extensions.
  */
 void MainWindow::onAddCategory() {
-  int row = m_table->rowCount();
-  m_table->insertRow(row);
-  m_table->setItem(row, 0, new QTableWidgetItem("Documents"));
-  m_table->setItem(row, 1, new QTableWidgetItem("pdf, docx, odt"));
+    m_table->blockSignals(true); // Signale temporär deaktivieren
 
-  // Create Checkbox Item
-  QTableWidgetItem *checkItem = new QTableWidgetItem();
-  checkItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-  checkItem->setCheckState(Qt::Unchecked); // Default off
-  m_table->setItem(row, 2, checkItem);
+    int row = m_table->rowCount();
+    m_table->insertRow(row);
 
-  onRulesModified();
+    // Standardwerte setzen
+    m_table->setItem(row, 0, new QTableWidgetItem("Documents"));
+    m_table->setItem(row, 1, new QTableWidgetItem("pdf, docx, odt"));
+
+    QTableWidgetItem *checkItem = new QTableWidgetItem();
+    checkItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+    checkItem->setCheckState(Qt::Unchecked);
+    m_table->setItem(row, 2, checkItem);
+
+    m_table->blockSignals(false); // Signale wieder aktivieren
+
+    onRulesModified(); // Jetzt einmalig manuell triggern, da alles bereit ist
 }
 
 /**
@@ -214,28 +219,35 @@ void MainWindow::onAutoSortToggled(bool checked) {
  * @return QList<Category> A list of configured categories.
  */
 QList<Category> MainWindow::getCategoriesFromUi() const {
-  QList<Category> categories;
-  for (int i = 0; i < m_table->rowCount(); ++i) {
-    auto itemFolder = m_table->item(i, 0);
-    auto itemExt = m_table->item(i, 1);
-    auto itemDate = m_table->item(i, 2); // Get the checkbox item
+    QList<Category> categories;
+    for (int i = 0; i < m_table->rowCount(); ++i) {
+        auto itemFolder = m_table->item(i, 0);
+        auto itemExt = m_table->item(i, 1);
+        auto itemDate = m_table->item(i, 2);
 
-    if (!itemFolder || !itemExt)
-      continue;
+        // Validierung: Falls ein Item noch nicht existiert (während des Hinzufügens)
+        // oder der Ordnername leer ist, überspringen wir diese Zeile.
+        if (!itemFolder || !itemExt || !itemDate)
+            continue;
 
-    QString folder = itemFolder->text().trimmed();
-    QStringList exts = itemExt->text().split(',', Qt::SkipEmptyParts);
-    for (auto &e : exts)
-      e = e.trimmed().toLower();
+        QString folder = itemFolder->text().trimmed();
+        if (folder.isEmpty())
+            continue;
 
-    // Read checkbox status
-    bool useDate = (itemDate->checkState() == Qt::Checked);
+        // Extraktion der Extensions (erlaubt Komma, Semikolon oder Leerzeichen)
+        QString rawExts = itemExt->text();
+        QStringList exts = rawExts.split(QRegularExpression("[,;\\s]+"), Qt::SkipEmptyParts);
 
-    if (!folder.isEmpty() && !exts.isEmpty()) {
-      categories.append({folder, exts, useDate}); // <--- pass useDate
+        for (auto &e : exts)
+            e = e.trimmed().toLower().remove('.'); // Entfernt Punkte, falls User ".pdf" statt "pdf" schreibt
+
+        if (exts.isEmpty())
+            continue;
+
+        bool useDate = (itemDate->checkState() == Qt::Checked);
+        categories.append({folder, exts, useDate});
     }
-  }
-  return categories;
+    return categories;
 }
 
 /**
