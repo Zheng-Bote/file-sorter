@@ -16,10 +16,10 @@ on:
       - "main"
     paths:
       - "README.md"
-  #    - "dist/**"
-  #    - "docs/**"
-  #    - ".github/actions/**"
-  #    - ".github/workflows/**"
+      #      - "dist/**"
+      - "docs/**"
+      #      - ".github/actions/**"
+      #      - ".github/workflows/**"
 
 permissions:
   checks: write
