@@ -7,15 +7,57 @@ This file contains the Mermaid source code for the architecture diagrams used in
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Class Diagram](#class-diagram)
 - [Use Case Diagram](#use-case-diagram)
 - [Component Diagram](#component-diagram)
 - [Sequence Diagram](#sequence-diagram)
 - [State Machine Diagram](#state-machine-diagram)
 - [Deployment Diagram](#deployment-diagram)
+- [Sorting Flow Logic](#sorting-flow-logic)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
+
+## Class Diagram
+
+```mermaid
+classDiagram
+    class MainWindow {
+        +QTableWidget* m_table
+        +QTextEdit* m_logOutput
+        +QCheckBox* m_autoSortCheck
+        -setupUI()
+        -saveSettings()
+        -loadSettings()
+        -onRulesModified()
+    }
+
+    class FileSorter {
+        +void sortDownloads(List categories)
+        +void setMonitoring(bool enable)
+        +void updateRules(List categories)
+        -QFileSystemWatcher* m_watcher
+        -QTimer* m_debounceTimer
+        -onDirectoryChanged()
+    }
+
+    class Category {
+        +QString folderName
+        +QStringList extensions
+        +bool useDatePath
+    }
+
+    class AboutDialog {
+        +AboutDialog(QWidget* parent)
+    }
+
+    MainWindow *-- FileSorter : owns
+    MainWindow ..> Category : creates
+    MainWindow ..> AboutDialog : shows
+    FileSorter -- QFileSystemWatcher : uses
+    FileSorter -- QTimer : uses
+```
 
 ## Use Case Diagram
 
@@ -108,4 +150,27 @@ graph TD
         end
     end
     App -->|Reads/Writes| FS
+```
+
+## Sorting Flow Logic
+
+When Automatic Monitoring is enabled, the application follows this process:
+
+```mermaid
+flowchart TD
+    A["Start / New File Detected"] --> B{"Is Debounce Timer Active?"}
+    B -- Yes --> C["Reset Timer"]
+    B -- No --> D["Start Timer (e.g. 2s)"]
+    C --> E["Wait..."]
+    D --> E
+    E --> F{"Timer Timeout"}
+    F --> G["Scan Download Directory"]
+    G --> H{"File matches Rule?"}
+    H -- No --> I["Skip File"]
+    H -- Yes --> J{"Date Sorting Enabled?"}
+    J -- Yes --> K["Create Path: Folder/YYYY/MM/DD"]
+    J -- No --> L["Create Path: Folder/"]
+    K --> M["Move File"]
+    L --> M
+    M --> N["Log Action"]
 ```
