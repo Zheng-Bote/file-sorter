@@ -7,12 +7,11 @@ This file contains the Mermaid source code for the architecture diagrams used in
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Architecture Diagrams](#architecture-diagrams)
-  - [Use Case Diagram](#use-case-diagram)
-  - [Component Diagram](#component-diagram)
-  - [Sequence Diagram](#sequence-diagram)
-  - [State Machine Diagram](#state-machine-diagram)
-  - [Deployment Diagram](#deployment-diagram)
+- [Use Case Diagram](#use-case-diagram)
+- [Component Diagram](#component-diagram)
+- [Sequence Diagram](#sequence-diagram)
+- [State Machine Diagram](#state-machine-diagram)
+- [Deployment Diagram](#deployment-diagram)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

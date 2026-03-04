@@ -29,6 +29,7 @@
   - [Windows](#windows)
     - [Setup](#setup)
   - [Linux](#linux)
+  - [macOS](#macos)
   - [Build](#build)
     - [Build Instructions](#build-instructions)
     - [Project Structure](#project-structure)
