@@ -6,6 +6,7 @@ project(FileSorter
     HOMEPAGE_URL "https://github.com/Zheng-Bote/file-sorter"
     LANGUAGES CXX)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -29,9 +30,6 @@ endif()
 
 # Konfigurations-Header erstellen
 add_subdirectory(configure) 
-# (Annahme: Ihre configure/CMakeLists.txt kümmert sich um rz_config.hpp.in 
-#  ODER Sie nutzen hier direkt configure_file wie vorher. Falls add_subdirectory
-#  leer ist, nutzen Sie den configure_file Befehl von vorher.)
 
 # 1. Executable definieren
 add_executable(${PROJECT_NAME}
@@ -47,6 +45,20 @@ add_executable(${PROJECT_NAME}
     # Windows Icon (.rc Datei verweist auf .ico)
     resources/windows_icon.rc
 )
+
+if(APPLE)
+    target_sources(${PROJECT_NAME} PRIVATE resources/app_icon.icns)
+    set_source_files_properties(resources/app_icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        MACOSX_BUNDLE TRUE
+        MACOSX_BUNDLE_ICON_FILE app_icon.icns
+        MACOSX_BUNDLE_GUI_IDENTIFIER "${PROG_ORGANIZATION_DOMAIN}.${PROJECT_NAME}"
+        MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_NAME}"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION}"
+        MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
+        MACOSX_BUNDLE_COPYRIGHT "${PROG_ORGANIZATION_NAME}"
+    )
+endif()
 
 # 2. Includes & Ressourcen
 target_include_directories(${PROJECT_NAME} PRIVATE include)
@@ -88,7 +100,7 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
 endif()
 
 # ==============================================================================
-# DEPLOYMENT (DLLs für ZIP vorbereiten)
+# DEPLOYMENT
 # ==============================================================================
 if(WIN32)
     # Windeployqt suchen
@@ -108,6 +120,25 @@ if(WIN32)
             \"\${CMAKE_INSTALL_PREFIX}/${EXECUTABLE_NAME}.exe\"
         )
     ")
+elseif(APPLE)
+    # Macdeployqt suchen
+    get_target_property(_qmake_executable Qt6::qmake IMPORTED_LOCATION)
+    get_filename_component(_qt_bin_dir "${_qmake_executable}" DIRECTORY)
+    find_program(MACDEPLOYQT_EXECUTABLE macdeployqt HINTS "${_qt_bin_dir}")
+
+    # Macdeployqt ausführen
+    install(CODE "
+        message(STATUS \"Running macdeployqt to bundle Qt dependencies...\")
+        execute_process(
+            COMMAND \"${MACDEPLOYQT_EXECUTABLE}\"
+            \"\${CMAKE_INSTALL_PREFIX}/${EXECUTABLE_NAME}.app\"
+            -always-overwrite
+            RESULT_VARIABLE macdeployqt_res
+        )
+        if(NOT macdeployqt_res EQUAL 0)
+            message(WARNING \"macdeployqt failed with code \${macdeployqt_res}\")
+        endif()
+    ")
 endif()
 
 # ==============================================================================
@@ -120,8 +151,12 @@ set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Portable FileSorter Application")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
 
-# WICHTIG: Nur ZIP Generator nutzen
-set(CPACK_GENERATOR "ZIP")
+# Generator für macOS festlegen (DragNDrop für DMG)
+if(APPLE)
+    set(CPACK_GENERATOR "DragNDrop")
+else()
+    set(CPACK_GENERATOR "ZIP")
+endif()
 
 # Module laden
 include(CPack)
@@ -157,3 +192,14 @@ if(UNIX AND NOT APPLE)
         USES_TERMINAL
     )
 endif()
+
+# --- 5. Custom Generators (Original Code) ---
+
+# CMake File API Query (Datei erzeugen)
+set(QUERY_DIR "${CMAKE_BINARY_DIR}/.cmake/api/v1/query/client-project")
+file(MAKE_DIRECTORY "${QUERY_DIR}")
+file(WRITE "${QUERY_DIR}/codemodel-v2" "")
+
+# libs.txt Generierung (Timing-sicher via GENERATE)
+file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/libs.txt"
+     CONTENT "$<TARGET_PROPERTY:${PROJECT_NAME},LINK_LIBRARIES>")

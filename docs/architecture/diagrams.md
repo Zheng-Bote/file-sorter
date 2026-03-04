@@ -1,3 +1,8 @@
+# Architecture Diagrams
+
+This file contains the Mermaid source code for the architecture diagrams used in the project documentation.
+
+---
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -11,9 +16,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Architecture Diagrams
-
-This file contains the Mermaid source code for the architecture diagrams used in the project documentation.
+---
 
 ## Use Case Diagram
 

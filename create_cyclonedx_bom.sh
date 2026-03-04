@@ -1,4 +1,21 @@
 #!/usr/bin/bash
+# =============================================================================
+# SPDX-FileComment: Script for creating a CycloneDX SBOM
+# SPDX-FileType: SOURCE
+# SPDX-FileContributor: ZHENG Robert
+# SPDX-FileCopyrightText: 2026 ZHENG Robert
+# SPDX-License-Identifier: MIT
+#
+# @file create_cyclonedx_bom.sh
+# @brief Script to generate SBOM reports in CycloneDX and SPDX formats.
+# @version <1.2.1>
+# @date <2026-03-04>
+#
+# @author ZHENG Robert (robert@hase-zheng.net)
+# @copyright Copyright (c) 2026 ZHENG Robert
+#
+# @/Users/zb_bamboo/Documents/DEV/CPP/file-sorter/license MIT License
+# =============================================================================
 set -e
 
 VERSION="1.2.1"

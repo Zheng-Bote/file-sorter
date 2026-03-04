@@ -1,0 +1,82 @@
+{
+  "dependencies": [
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "SAFE",
+          "severity": "NONE",
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-03-04",
+          "suppressed": false,
+          "suppression_reason": ""
+        }
+      ],
+      "headers": [],
+      "libraries": [],
+      "licenses": [
+        "UNKNOWN"
+      ],
+      "name": "Qt6::Core",
+      "source": "cmake_target",
+      "type": "cmake_target",
+      "version": "System/Qt"
+    },
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "SAFE",
+          "severity": "NONE",
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-03-04",
+          "suppressed": false,
+          "suppression_reason": ""
+        }
+      ],
+      "headers": [],
+      "libraries": [],
+      "licenses": [
+        "UNKNOWN"
+      ],
+      "name": "Qt6::Gui",
+      "source": "cmake_target",
+      "type": "cmake_target",
+      "version": "System/Qt"
+    },
+    {
+      "cves": [
+        {
+          "fixed_version": "",
+          "id": "SAFE",
+          "severity": "NONE",
+          "summary": "No vulnerabilities found in ecosystem 'Debian'. Checked on 2026-03-04",
+          "suppressed": false,
+          "suppression_reason": ""
+        }
+      ],
+      "headers": [],
+      "libraries": [],
+      "licenses": [
+        "UNKNOWN"
+      ],
+      "name": "Qt6::Widgets",
+      "source": "cmake_target",
+      "type": "cmake_target",
+      "version": "System/Qt"
+    }
+  ],
+  "header": {
+    "project": {
+      "name": "File Sorter",
+      "workspace_root": "/Users/zb_bamboo/Documents/DEV/CPP/file-sorter"
+    },
+    "scan_date": "2026-03-04",
+    "schema_version": "1.2",
+    "tool": {
+      "author": "ZHENG Bote",
+      "description": "Native C++ Dependency Scanner & SBOM Generator",
+      "homepage": "https://github.com/zb-bamboo/Dependency_Tracker_2",
+      "name": "depdiscover",
+      "version": "1.2.0"
+    }
+  }
+}

@@ -119,6 +119,7 @@ FileSorter.exe --minimized
 
 ![App Screenshot](/docs/img/01_de.png)
 ![App Screenshot](/docs/img/about_de.png)
+![App Screenshot](/docs/img/macos.png)
 
 ### Autostart Win11
 
@@ -176,6 +177,14 @@ And copy the app_icon (Path depends on your Linux distribution):
 sudo cp resources/app_icon.png /usr/local/share/icons/hicolor/256x256/apps/FileSorter.png
 ```
 
+## macOS
+
+Just download the `.dmg` package and install it:
+
+1. Double-click on `FileSorter-1.2.1-Darwin.dmg` to mount the disk image.
+2. Drag and drop the `FileSorter` application into your `Applications` folder.
+3. Launch `FileSorter` from your Applications or Launchpad.
+
 ## Build
 
 **_Prerequisites_**
@@ -200,10 +209,14 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 # 4. Build
 cmake --build . --config Release
 
-# 5. Installer packages (optional, Windows only)
+# 5. Installer packages (optional)
+# Windows (ZIP)
 cpack.exe -C Release
 # in some cases (if Chocolatey is installed on your system) the complete path to your Qt cpack is needed
 & "C:\Qt\Tools\CMake_64\bin\cpack.exe" -C Release
+
+# macOS (DMG)
+./create_dmg.sh
 ```
 
 ### Project Structure

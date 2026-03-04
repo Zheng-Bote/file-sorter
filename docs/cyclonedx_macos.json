@@ -1,0 +1,64 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:generic/Qt6::Core@System/Qt",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "Qt6::Core",
+      "purl": "pkg:generic/Qt6::Core@System/Qt",
+      "type": "library",
+      "version": "System/Qt"
+    },
+    {
+      "bom-ref": "pkg:generic/Qt6::Gui@System/Qt",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "Qt6::Gui",
+      "purl": "pkg:generic/Qt6::Gui@System/Qt",
+      "type": "library",
+      "version": "System/Qt"
+    },
+    {
+      "bom-ref": "pkg:generic/Qt6::Widgets@System/Qt",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "name": "Qt6::Widgets",
+      "purl": "pkg:generic/Qt6::Widgets@System/Qt",
+      "type": "library",
+      "version": "System/Qt"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "name": "File Sorter",
+      "type": "application"
+    },
+    "timestamp": "2026-03-04T18:24:07Z",
+    "tools": [
+      {
+        "name": "depdiscover",
+        "vendor": "ZHENG Bote",
+        "version": "1.2.0"
+      }
+    ]
+  },
+  "serialNumber": "urn:uuid:1cd6d1a1-cc27-4c09-870b-a319a3e9e2fb",
+  "specVersion": "1.4",
+  "version": 1
+}

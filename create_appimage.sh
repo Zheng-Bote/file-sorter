@@ -1,4 +1,21 @@
 #!/usr/bin/bash
+# =============================================================================
+# SPDX-FileComment: Script for creating a Linux AppImage package
+# SPDX-FileType: SOURCE
+# SPDX-FileContributor: ZHENG Robert
+# SPDX-FileCopyrightText: 2026 ZHENG Robert
+# SPDX-License-Identifier: MIT
+#
+# @file create_appimage.sh
+# @brief Script to build and package FileSorter into an AppImage on Linux.
+# @version <1.2.1>
+# @date <2026-03-04>
+#
+# @author ZHENG Robert (robert@hase-zheng.net)
+# @copyright Copyright (c) 2026 ZHENG Robert
+#
+# @/Users/zb_bamboo/Documents/DEV/CPP/file-sorter/license MIT License
+# =============================================================================
 set -e
 
 # Konfiguration
